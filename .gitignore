@@ -1,0 +1,14 @@
+/app/config/parameters.yml
+/app/deploy/secret/
+!app/deploy/secret/.gitkeep
+/bin/
+!bin/console
+!bin/symfony_requirements
+/build/
+/phpunit.xml
+/var/
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+!var/sessions/.gitkeep
+/vendor/
+/web/bundles/
