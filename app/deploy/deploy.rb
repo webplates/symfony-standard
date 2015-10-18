@@ -4,7 +4,7 @@ set :branch, ENV['BRANCH'] || 'master'
 
 
 # Symfony settings
-set: var_path, 'var'
+set :var_path, 'var'
 set :log_path, fetch(:var_path) + '/logs'
 set :cache_path, fetch(:var_path) + '/cache'
 set :session_path, fetch(:var_path) + '/sessions'
