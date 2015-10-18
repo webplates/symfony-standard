@@ -12,3 +12,6 @@
 !var/sessions/.gitkeep
 /vendor/
 /web/bundles/
+
+# Capistrano log directory
+/log/
