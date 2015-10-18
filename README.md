@@ -65,7 +65,6 @@ official Symfony plugin.
 It is not really a feature of Symfony, but helps you writting code in the same style in any IDE.
 
 
-
 ## What's removed?
 
 ### Assetic
