@@ -1,5 +1,6 @@
 set :application, 'symfony'
 set :repo_url, "git@github.com:symfony/#{fetch(:application)}.git"
+set :branch, ENV['BRANCH'] || 'master'
 
 
 # Symfony settings
