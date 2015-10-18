@@ -4,10 +4,12 @@ set :branch, ENV['BRANCH'] || 'master'
 
 
 # Symfony settings
+set :bin_path, 'bin'
 set :var_path, 'var'
 set :log_path, fetch(:var_path) + '/logs'
 set :cache_path, fetch(:var_path) + '/cache'
 set :session_path, fetch(:var_path) + '/sessions'
+set :symfony_console_path, fetch(:bin_path) + '/console'
 
 set :controllers_to_clear, ['app_*.php', 'install.php']
 
