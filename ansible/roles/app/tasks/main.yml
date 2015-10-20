@@ -1,0 +1,45 @@
+---
+# application tasks to be customized and to run after the main provision
+
+- name: Set Symfony environment variable
+  sudo: no
+  lineinfile:
+    dest=/home/vagrant/.profile
+    line="export SYMFONY_ENV=\"vagrant\""
+    regexp="^export SYMFONY_ENV"
+    state=present
+    insertafter=EOF
+    create=yes
+
+- name: Set Composer install path
+  sudo: no
+  lineinfile:
+    dest=/home/vagrant/.profile
+    line="export COMPOSER_VENDOR_DIR=\"/tmp/symfony/vendor\""
+    regexp="^export COMPOSER_VENDOR_DIR"
+    state=present
+    insertafter=EOF
+    create=yes
+
+- name: Create cache directory
+  sudo: no
+  file: path=/dev/shm/symfony/cache state=directory
+
+- name: Create log directory
+  sudo: no
+  file: path=/dev/shm/symfony/logs state=directory
+
+- name: Create session directory
+  sudo: no
+  file: path=/dev/shm/symfony/sessions state=directory
+
+- name: Create dependency directory
+  sudo: no
+  file: path=/tmp/symfony/vendor state=directory
+
+- name: Install application dependencies
+  sudo: no
+  composer: command=install working_dir=/vagrant no_dev=no
+  environment:
+    SYMFONY_ENV: dev
+    COMPOSER_VENDOR_DIR: /tmp/symfony/vendor

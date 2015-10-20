@@ -1,3 +1,4 @@
+/.vagrant/
 /app/config/parameters.yml
 /app/deploy/secret/
 !app/deploy/secret/.gitkeep

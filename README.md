@@ -65,6 +65,33 @@ official Symfony plugin.
 It is not really a feature of Symfony, but helps you writting code in the same style in any IDE.
 
 
+### Vagrant
+
+Vagrant is famous about being extremely slow with Symfony.
+There are various reason for that, but all of them originate from one: bad I/O performance.
+There are some best practices out there, some of them work, some doesn't.
+In this project you will find a solution which is integrated into the application without forcing you
+to make a compromise:
+
+- NFS is used instead of Virtualbox sync
+- Vagrant has its own environemnt which allows custom cache and log path moved out from the sync
+- Composer's `COMPOSER_VENDOR_DIR` environment variable allows to install dependencies in a custom directory
+
+Moving these files out of the synced folder is the key.
+
+**Note:** Unlike other solutions, this one does not actually move anything out of the application directory.
+Cache, log and vendor still remain in the application (no symlinking or other hacks).
+The `vagrant` environment simply uses different paths in the box, so these are available on the box as well:
+
+- Cache, logs and sessions are in the shared memory
+- Vendors are in the tmo directory
+
+
+If you want to further improve the speed,
+check [this](http://chase-seibert.github.io/blog/2014/03/09/vagrant-cachefilesd.html) guide.
+
+
+
 ## What's removed?
 
 ### Assetic
