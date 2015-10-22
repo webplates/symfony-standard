@@ -53,4 +53,12 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.synced_folder "./", "/vagrant", type: "nfs"
+
+    # Hostmanager adds the VM hostname to your hosts file
+    if Vagrant.has_plugin?("vagrant-hostmanager")
+        config.hostmanager.enabled = true
+        config.hostmanager.manage_host = true
+        config.hostmanager.ignore_private_ip = false
+        config.hostmanager.include_offline = true
+    end
 end
