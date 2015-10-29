@@ -41,5 +41,5 @@
   sudo: no
   composer: command=install working_dir=/vagrant no_dev=no
   environment:
-    SYMFONY_ENV: dev
+    SYMFONY_ENV: vagrant
     COMPOSER_VENDOR_DIR: /tmp/symfony/vendor
