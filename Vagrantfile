@@ -35,6 +35,8 @@ Vagrant.configure("2") do |config|
         ]
     end
 
+    config.vm.hostname = "symfony.dev"
+
     config.vm.box = "ubuntu/trusty64"
 
     config.vm.network :private_network, ip: "192.168.33.99"
