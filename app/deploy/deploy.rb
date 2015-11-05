@@ -11,7 +11,7 @@ set :cache_path, fetch(:var_path) + '/cache'
 set :session_path, fetch(:var_path) + '/sessions'
 set :symfony_console_path, fetch(:bin_path) + '/console'
 
-set :controllers_to_clear, ['app_*.php', 'install.php']
+set :controllers_to_clear, ['app_*.php', 'config.php']
 
 
 # Banner
