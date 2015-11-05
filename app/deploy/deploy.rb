@@ -44,7 +44,6 @@ set :linked_files, ['app/config/parameters.yml']
 set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
-    fetch(:secret_dir),
     fetch(:web_path) + '/uploads'
 ]
 

@@ -1,7 +1,6 @@
 /.vagrant/
 /app/config/parameters.yml
 /app/deploy/secret/
-!app/deploy/secret/.gitkeep
 /bin/
 !bin/console
 !bin/symfony_requirements
