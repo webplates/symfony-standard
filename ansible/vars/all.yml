@@ -13,7 +13,7 @@ nginx:
     servername: symfony.dev
 mysql:
     install: '1'
-    root_password: symfony
+    root_password: ''
     database: symfony
     user: symfony
     password: symfony
