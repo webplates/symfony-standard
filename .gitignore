@@ -1,6 +1,5 @@
 /.vagrant/
 /app/config/parameters.yml
-/app/deploy/secret/
 /bin/
 !bin/console
 !bin/symfony_requirements
@@ -13,5 +12,7 @@
 /vendor/
 /web/bundles/
 
-# Capistrano log directory
+# Capistrano
+/.env*
+/app/deploy/secret/
 /log/
