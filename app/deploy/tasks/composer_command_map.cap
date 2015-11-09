@@ -1,5 +1,5 @@
-# Set the composer executable
 namespace :composer do
+    desc 'Set the composer executable path'
     task :set_composer_command_map do
         SSHKit.config.command_map[:composer] = "#{shared_path.join("composer.phar")}"
     end
