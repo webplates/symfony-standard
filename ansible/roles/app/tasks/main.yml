@@ -43,3 +43,13 @@
   environment:
     SYMFONY_ENV: vagrant
     COMPOSER_VENDOR_DIR: /tmp/symfony/vendor
+
+- name: Setup database
+  sudo: no
+  command: "{{ item }}"
+  with_items:
+    - php /vagrant/bin/console doctrine:migrations:migrate --no-interaction
+    - php /vagrant/bin/console doctrine:fixtures:load --no-interaction
+  environment:
+    SYMFONY_ENV: vagrant
+    COMPOSER_VENDOR_DIR: /tmp/symfony/vendor
