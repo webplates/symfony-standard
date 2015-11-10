@@ -1,21 +1,21 @@
-set :application, 'symfony'
+set :application, "symfony"
 set :repo_url, "git@github.com:symfony/#{fetch(:application)}.git"
-set :branch, ENV['BRANCH'] || 'master'
+set :branch, ENV["BRANCH"] || "master"
 
 
 # Symfony settings
-set :bin_path, 'bin'
-set :var_path, 'var'
-set :log_path, fetch(:var_path) + '/logs'
-set :cache_path, fetch(:var_path) + '/cache'
-set :session_path, fetch(:var_path) + '/sessions'
-set :symfony_console_path, fetch(:bin_path) + '/console'
+set :bin_path, "bin"
+set :var_path, "var"
+set :log_path, fetch(:var_path) + "/logs"
+set :cache_path, fetch(:var_path) + "/cache"
+set :session_path, fetch(:var_path) + "/sessions"
+set :symfony_console_path, fetch(:bin_path) + "/console"
 
-set :controllers_to_clear, ['app_*.php', 'config.php']
+set :controllers_to_clear, ["app_*.php", "config.php"]
 
 
 # Banner
-set :banner_path, fetch(:deploy_path) + '/banner.txt'
+set :banner_path, fetch(:deploy_path) + "/banner.txt"
 set :banner_options, {
     :pause => true
 }
@@ -36,21 +36,21 @@ set :logtail_lines, 50
 
 
 # Secret path configuration
-set :secret_dir, fetch(:deploy_path) + '/secret'
+set :secret_dir, fetch(:deploy_path) + "/secret"
 
 
 # Shared content
-set :linked_files, ['app/config/parameters.yml']
+set :linked_files, ["app/config/parameters.yml"]
 set :linked_dirs, [
     fetch(:log_path),
     fetch(:session_path),
-    fetch(:web_path) + '/uploads'
+    fetch(:web_path) + "/uploads"
 ]
 
 
 # Deploy hooks
 namespace :deploy do
-    after :starting, 'composer:install_executable'
+    after :starting, "composer:install_executable"
 end
 
 

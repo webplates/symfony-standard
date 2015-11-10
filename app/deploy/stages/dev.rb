@@ -1,1 +1,1 @@
-server 'dev.symfony.com', user: 'fabien', roles: [:app, :web]
+server "dev.symfony.com", user: "fabien", roles: [:app, :web]
