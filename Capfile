@@ -49,4 +49,4 @@ require "capistrano/logtail"
 require "capistrano/secret"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob(fetch(:deploy_path) + "/tasks/*.rb").each { |r| import r }
+Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rb").each { |r| import r }
