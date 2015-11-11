@@ -3,6 +3,10 @@ set :deploy_path, "app/deploy"
 set :deploy_config_path, fetch(:deploy_path) + "/deploy.rb"
 set :stage_config_path, fetch(:deploy_path) + "/stages/"
 
+# Add custom load path `app/deploy/lib` for custom requirements
+lib = File.expand_path(fetch(:deploy_path) + "/lib")
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 # Load DSL and set up stages
 require "capistrano/setup"
 
@@ -48,5 +52,5 @@ require "capistrano/logtail"
 # Store secrets
 require "capistrano/secret"
 
-# Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rb").each { |r| import r }
+# Load custom tasks from `app/deploy/tasks` if you have any defined
+Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rake").each { |r| import r }
