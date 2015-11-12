@@ -24,18 +24,4 @@ This skeleton does not try to force you to use any of the included features, thu
 added to the end of each feature documentation.
 
 
-## Table of Contents
-
-- What's inside
-    - [Symfony 3 directory structure](Symfony-3-directory-structure)
-    - [Capistrano deployment](Capistrano-deployment)
-    - [Editorconfig](Editorconfig)
-    - [Vagrant](Vagrant)
-- What's removed
-    - [Assetic](Assetic)
-
-
-As in the original version, all libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
+See what's inside in the [wiki](../../wiki).
