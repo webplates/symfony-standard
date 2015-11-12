@@ -8,7 +8,7 @@ namespace :doctrine do
         end
 
         desc "Create doctrine schema"
-        task :drop do
+        task :create do
             on roles(:app) do
                 invoke "symfony:console", "doctrine:schema:create"
             end
