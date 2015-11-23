@@ -2,7 +2,7 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
@@ -12,7 +12,21 @@ class DefaultControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStatusCode(200, $client);
         $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
+    }
+
+    public function testHello()
+    {
+        $this->loadFixtures([
+            'AppBundle\DataFixtures\ORM\LoadUserData',
+        ]);
+
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/hello/fabien');
+
+        $this->assertStatusCode(200, $client);
+        $this->assertContains('Hello, Fabien Potencier!', $crawler->filter('#container h1')->text());
     }
 }
