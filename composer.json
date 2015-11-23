@@ -25,7 +25,8 @@
         "sensio/generator-bundle": "~2.3",
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "theofidry/psysh-bundle": "^1.1",
-        "liip/functional-test-bundle": "^1.3@dev"
+        "liip/functional-test-bundle": "^1.3@dev",
+        "hautelook/alice-bundle": "^1.1"
     },
     "scripts": {
         "post-install-cmd": [
