@@ -33,7 +33,7 @@
   sudo: no
   file: path=/dev/shm/symfony/sessions state=directory
 
-- name: Create dependency directory
+- name: Create Symfony local directory
   sudo: yes
   file: path=/opt/symfony state=directory owner=vagrant group=vagrant
 
