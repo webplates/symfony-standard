@@ -1,9 +1,12 @@
+# General
 /.vagrant/
+/build/
+
+# Symfony
 /app/config/parameters.yml
 /bin/
 !bin/console
 !bin/symfony_requirements
-/build/
 /phpunit.xml
 /var/
 !var/cache/.gitkeep
@@ -16,3 +19,9 @@
 /.env*
 /app/deploy/secret/
 /log/
+
+# Node - Bower - Gulp
+/bower_components/
+/node_modules/
+/npm-debug.log
+/src/AppBundle/Resources/public/

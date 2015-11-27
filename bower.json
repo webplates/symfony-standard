@@ -1,0 +1,22 @@
+{
+    "name": "symfony",
+    "authors": [],
+    "description": "",
+    "main": "",
+    "moduleType": [],
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "var",
+        "vendor"
+    ],
+    "dependencies": {
+        "bootstrap": "~4.0",
+        "font-awesome": "fontawesome#~4.5.0"
+    }
+}
