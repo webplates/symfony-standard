@@ -7,7 +7,7 @@ var del = require('del');
 var $g = pluginLoader();
 
 var $p = pluginLoader({
-    pattern: ['postcss-*', 'postcss.*', 'autoprefixer', 'cssnano'],
+    pattern: ['postcss-*', 'postcss.*', 'autoprefixer', 'cssnano', 'stylelint'],
     replaceString: /^postcss(-|\.)/
 });
 
@@ -51,12 +51,16 @@ gulp.task('clean:scripts', function() {
 
 gulp.task('styles', ['clean:styles'], function () {
     var processors = [
+        $p.bemLinter(),
+        $p.stylelint(),
         $p.autoprefixer(AUTOPREFIXER_BROWSERS)
     ];
 
     if (prod()) {
         processors.push($p.cssnano());
     }
+
+    processors.push($p.reporter());
 
     return gulp.src(src + '/scss/style.scss')
         .pipe(dev($g.sourcemaps.init({loadMaps: true})))
