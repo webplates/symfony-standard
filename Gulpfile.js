@@ -62,6 +62,7 @@ gulp.task('styles', ['clean:styles'], function () {
         .pipe(dev($g.sourcemaps.init({loadMaps: true})))
         .pipe($g.sass().on('error', $g.sass.logError))
         .pipe($g.postcss(processors))
+        .pipe($g.size({title: 'styles'}))
         .pipe(dev($g.sourcemaps.write('./')))
         .pipe(gulp.dest(dest + '/css'));
 });
@@ -84,6 +85,7 @@ gulp.task('scripts', ['clean:scripts'], function () {
         .pipe(buffer())
         .pipe(dev($g.sourcemaps.init({loadMaps: true})))
         .pipe(prod($g.uglify()))
+        .pipe($g.size({title: 'scripts'}))
         .pipe(dev($g.sourcemaps.write('./')))
         .pipe(gulp.dest(dest + '/js'));
 });
