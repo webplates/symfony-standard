@@ -38,7 +38,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('clean:styles', function() {
-    return del([dest + '/scss/*']);
+    return del([dest + '/css/*']);
 });
 
 gulp.task('clean:fonts', function() {
