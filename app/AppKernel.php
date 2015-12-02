@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test', 'vagrant'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -39,20 +39,12 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        if ($this->environment === 'vagrant') {
-            return '/dev/shm/symfony/cache/'.$this->environment;
-        }
-
-        return dirname(__DIR__).'/var/cache/'.$this->environment;
+        return SYMFONY_BASEPATH.'/var/cache/'.$this->environment;
     }
 
     public function getLogDir()
     {
-        if ($this->environment === 'vagrant') {
-            return '/dev/shm/symfony/logs';
-        }
-
-        return dirname(__DIR__).'/var/logs';
+        return SYMFONY_BASEPATH.'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

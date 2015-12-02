@@ -1,16 +1,6 @@
 ---
 # application tasks to be customized and to run after the main provision
 
-- name: Set Symfony environment variable
-  sudo: no
-  lineinfile:
-    dest=/home/vagrant/.profile
-    line="export SYMFONY_ENV=\"vagrant\""
-    regexp="^export SYMFONY_ENV"
-    state=present
-    insertafter=EOF
-    create=yes
-
 - name: Set Composer install path
   sudo: no
   lineinfile:
@@ -21,18 +11,6 @@
     insertafter=EOF
     create=yes
 
-- name: Create cache directory
-  sudo: no
-  file: path=/dev/shm/symfony/cache state=directory
-
-- name: Create log directory
-  sudo: no
-  file: path=/dev/shm/symfony/logs state=directory
-
-- name: Create session directory
-  sudo: no
-  file: path=/dev/shm/symfony/sessions state=directory
-
 - name: Create Symfony local directory
   sudo: yes
   file: path=/opt/symfony state=directory owner=vagrant group=vagrant
@@ -41,9 +19,9 @@
   sudo: no
   composer: command=install working_dir=/vagrant no_dev=no
 
-- name: Setup database
+- name: Migrate database and load fixtures
   sudo: no
   command: "{{ item }}"
   with_items:
     - php /vagrant/bin/console doctrine:migrations:migrate --no-interaction
-    - php /vagrant/bin/console doctrine:fixtures:load --no-interaction
+    - php /vagrant/bin/console h:d:f:l --no-interaction
