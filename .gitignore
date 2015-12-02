@@ -1,17 +1,21 @@
 # General
 /.vagrant/
-/build/
 
 # Symfony
 /app/config/parameters.yml
-/bin/
-!bin/console
-!bin/symfony_requirements
+/build/
 /phpunit.xml
-/var/
+/var/*
+!/var/cache
+/var/cache/*
 !var/cache/.gitkeep
+!/var/logs
+/var/logs/*
 !var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
 !var/sessions/.gitkeep
+!var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
 
