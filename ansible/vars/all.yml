@@ -10,7 +10,7 @@ vagrant_local:
 nginx:
     install: '1'
     docroot: /vagrant/web
-    docindex: app.php
+    docindex: app_dev.php
     servername: symfony.dev
 mysql:
     install: '1'
