@@ -1,6 +1,0 @@
-imports:
-    - { resource: config_dev.yml }
-
-framework:
-    session:
-        save_path: /dev/shm/symfony/sessions/%kernel.environment%

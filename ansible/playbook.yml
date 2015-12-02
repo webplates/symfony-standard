@@ -13,5 +13,4 @@
     - composer
     - app
   environment:
-    SYMFONY_ENV: vagrant
     COMPOSER_VENDOR_DIR: /opt/symfony/vendor
