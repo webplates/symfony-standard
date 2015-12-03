@@ -31,5 +31,7 @@ server {
         fastcgi_index {{ nginx.docindex }};
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
+
+        fastcgi_param SYMFONY__kernel__storage_dir '{{ app.storage_path }}';
     }
 }

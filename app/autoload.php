@@ -5,18 +5,25 @@ use Composer\Autoload\ClassLoader;
 
 error_reporting(error_reporting() & ~E_USER_DEPRECATED);
 
-$vendorDir = dirname(__DIR__).'/vendor';
+// Vendor and var can be stored outside of the base path
+// This will be available as an option called "kernel.storage_dir"
+$storageDir = getenv('SYMFONY__kernel__storage_dir');
 
-if (getenv('USER') === 'vagrant') {
-    $vendorDir = getenv('COMPOSER_VENDOR_DIR') ?: '/opt/symfony/vendor';
+if (empty($storageDir)) {
+    $storageDir =  dirname(__DIR__);
+
+    putenv('SYMFONY__kernel__storage_dir='.$storageDir);
+    $_SERVER['SYMFONY__kernel__storage_dir'] = $storageDir;
+    $_ENV['SYMFONY__kernel__storage_dir'] = $storageDir;
 }
 
-define('SYMFONY_BASEPATH', dirname($vendorDir));
+// Don't rely on this constant
+define('KERNEL_STORAGE_DIR', $storageDir);
 
 /**
  * @var ClassLoader $loader
  */
-$loader = require SYMFONY_BASEPATH.'/vendor/autoload.php';
+$loader = require KERNEL_STORAGE_DIR.'/vendor/autoload.php';
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 

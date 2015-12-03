@@ -1,11 +1,21 @@
 ---
 # application tasks to be customized and to run after the main provision
 
+- name: Set kernel storage path
+  sudo: no
+  lineinfile:
+    dest=/home/vagrant/.profile
+    line="export SYMFONY__kernel__storage_dir=\"/opt/symfony\""
+    regexp="^export SYMFONY__kernel__storage_dir"
+    state=present
+    insertafter=EOF
+    create=yes
+
 - name: Set Composer install path
   sudo: no
   lineinfile:
     dest=/home/vagrant/.profile
-    line="export COMPOSER_VENDOR_DIR=\"/opt/symfony/vendor\""
+    line="export COMPOSER_VENDOR_DIR=\"${SYMFONY__kernel__storage_dir}/vendor\""
     regexp="^export COMPOSER_VENDOR_DIR"
     state=present
     insertafter=EOF

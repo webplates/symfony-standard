@@ -13,4 +13,5 @@
     - composer
     - app
   environment:
+    SYMFONY__kernel__storage_dir: /opt/symfony
     COMPOSER_VENDOR_DIR: /opt/symfony/vendor

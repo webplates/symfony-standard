@@ -39,12 +39,12 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return SYMFONY_BASEPATH.'/var/cache/'.$this->environment;
+        return KERNEL_STORAGE_DIR.'/var/cache/'.$this->environment;
     }
 
     public function getLogDir()
     {
-        return SYMFONY_BASEPATH.'/var/logs';
+        return KERNEL_STORAGE_DIR.'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

@@ -1,4 +1,6 @@
 ---
+app:
+    storage_path: /opt/symfony
 server:
     install: '1'
     timezone: UTC
