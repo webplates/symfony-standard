@@ -74,3 +74,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Lexik Maintenance Configuration
+lexik_maintenance:
+    authorized:
+        ips:
+            - 127.0.0.1
+    driver:
+        class: Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
+        options: {file_path: %kernel.storage_dir%/var/maintenance_lock}
