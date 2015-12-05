@@ -20,7 +20,8 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.0",
-        "lexik/maintenance-bundle": "^2.0"
+        "lexik/maintenance-bundle": "^2.0",
+        "halleck45/phpmetrics-collector-bundle": "^0.0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
