@@ -4,13 +4,22 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var del = require('del');
 
+// Gulp plugins
 var $g = pluginLoader();
 
+// PostCSS plugins
 var $p = pluginLoader({
     pattern: ['postcss-*', 'postcss.*', 'autoprefixer', 'cssnano', 'stylelint'],
     replaceString: /^postcss(-|\.)/
 });
 
+// Imagemin plugins
+var $i = pluginLoader({
+    pattern: ['imagemin-*', 'imagemin.*'],
+    replaceString: /^imagemin(-|\.)/
+});
+
+// Environmant
 var dev = $g.environments.development;
 var prod = $g.environments.production;
 
@@ -41,12 +50,16 @@ gulp.task('clean:styles', function() {
     return del([dest + '/css/*']);
 });
 
+gulp.task('clean:scripts', function() {
+    return del([dest + '/js/*']);
+});
+
 gulp.task('clean:fonts', function() {
     return del([dest + '/fonts/*']);
 });
 
-gulp.task('clean:scripts', function() {
-    return del([dest + '/js/*']);
+gulp.task('clean:images', function() {
+    return del([dest + '/img/*']);
 });
 
 gulp.task('styles', ['clean:styles'], function () {
@@ -71,12 +84,6 @@ gulp.task('styles', ['clean:styles'], function () {
         .pipe(gulp.dest(dest + '/css'));
 });
 
-
-gulp.task('fonts', ['clean:fonts'], function() {
-    return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
-        .pipe(gulp.dest(dest + '/fonts'));
-});
-
 gulp.task('scripts', ['clean:scripts'], function () {
     var b = browserify({
         entries: src + '/js/app.js',
@@ -94,10 +101,27 @@ gulp.task('scripts', ['clean:scripts'], function () {
         .pipe(gulp.dest(dest + '/js'));
 });
 
+gulp.task('fonts', ['clean:fonts'], function() {
+    return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
+        .pipe(gulp.dest(dest + '/fonts'));
+});
+
+gulp.task('images', ['clean:images'], function() {
+    return gulp.src(src + '/img/**/*.{png,svg,jpg,gif}')
+        .pipe($g.imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [
+                $i.pngquant()
+            ]
+        }))
+        .pipe(gulp.dest(dest + '/img'));
+});
+
 gulp.task('watch', function() {
     gulp.watch(src + '/scss/**/*.scss', ['styles']);
     gulp.watch(src + '/js/**/*.js', ['scripts']);
 });
 
-gulp.task('build', ['styles', 'fonts', 'scripts']);
+gulp.task('build', ['styles', 'scripts', 'fonts', 'images']);
 gulp.task('default', ['build']);
