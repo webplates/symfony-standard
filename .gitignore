@@ -32,7 +32,6 @@
 
 
 # Favicons
-
 /web/android-chrome-*.png
 /web/apple-touch-*.png
 /web/browserconfig.xml
