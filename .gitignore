@@ -29,3 +29,21 @@
 /node_modules/
 /npm-debug.log
 /src/AppBundle/Resources/public/
+
+
+# Favicons
+
+/web/android-chrome-*.png
+/web/apple-touch-*.png
+/web/browserconfig.xml
+/web/coast-*.png
+/web/favicon.ico
+/web/favicon-*.png
+/web/firefox_app_*.png
+/web/manifest.json
+/web/manifest.webapp
+/web/mstile-*.png
+/web/open-graph.png
+/web/twitter.png
+/web/yandex-*.png
+/web/yandex-browser-manifest.json

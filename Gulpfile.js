@@ -62,6 +62,25 @@ gulp.task('clean:images', function() {
     return del([dest + '/img/*']);
 });
 
+gulp.task('clean:favicons', function() {
+    return del([
+        'web/android-chrome-*.png',
+        'web/apple-touch-*.png',
+        'web/browserconfig.xml',
+        'web/coast-*.png',
+        'web/favicon.ico',
+        'web/favicon-*.png',
+        'web/firefox_app_*.png',
+        'web/manifest.json',
+        'web/manifest.webapp',
+        'web/mstile-*.png',
+        'web/open-graph.png',
+        'web/twitter.png',
+        'web/yandex-*.png',
+        'web/yandex-browser-manifest.json'
+    ]);
+});
+
 gulp.task('styles', ['clean:styles'], function () {
     var processors = [
         $p.bemLinter(),
@@ -118,10 +137,28 @@ gulp.task('images', ['clean:images'], function() {
         .pipe(gulp.dest(dest + '/img'));
 });
 
+gulp.task('favicons', ['clean:favicons'], function() {
+    return gulp.src(src + '/img/symfony_logo.png')
+        .pipe($g.favicons({
+            appName: 'Symfony',
+            appDescription: 'This is my application',
+            background: '#ffffff',
+            path: '/',
+            url: '/',
+            display: 'standalone',
+            orientation: 'portrait',
+            version: 1.0,
+            logging: false,
+            online: false,
+            html: 'app/Resources/views/favicons.html.twig'
+        }))
+        .pipe(gulp.dest('web/'));
+});
+
 gulp.task('watch', function() {
     gulp.watch(src + '/scss/**/*.scss', ['styles']);
     gulp.watch(src + '/js/**/*.js', ['scripts']);
 });
 
-gulp.task('build', ['styles', 'scripts', 'fonts', 'images']);
+gulp.task('build', ['styles', 'scripts', 'fonts', 'images', 'favicons']);
 gulp.task('default', ['build']);
