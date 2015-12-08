@@ -122,6 +122,7 @@ gulp.task('scripts', ['clean:scripts'], function () {
 
 gulp.task('fonts', ['clean:fonts'], function() {
     return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
+        .pipe($g.size({title: 'fonts'}))
         .pipe(gulp.dest(dest + '/fonts'));
 });
 
@@ -134,6 +135,7 @@ gulp.task('images', ['clean:images'], function() {
                 $i.pngquant()
             ]
         }))
+        .pipe($g.size({title: 'images'}))
         .pipe(gulp.dest(dest + '/img'));
 });
 
@@ -152,6 +154,7 @@ gulp.task('favicons', ['clean:favicons'], function() {
             online: false,
             html: 'app/Resources/views/favicons.html.twig'
         }))
+        .pipe($g.size({title: 'favicons'}))
         .pipe(gulp.dest('web/'));
 });
 
