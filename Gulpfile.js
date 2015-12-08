@@ -132,6 +132,9 @@ gulp.task('images', ['clean:images'], function() {
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [
+                $i.gifsicle(),
+                $i.jpegtran(),
+                $i.optipng(),
                 $i.pngquant()
             ]
         }))
