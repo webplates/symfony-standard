@@ -121,7 +121,7 @@ gulp.task('scripts', ['clean:scripts'], function () {
 });
 
 gulp.task('fonts', ['clean:fonts'], function() {
-    return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
+    return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
         .pipe($g.size({title: 'fonts'}))
         .pipe(gulp.dest(dest + '/fonts'));
 });
