@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "lexik/maintenance-bundle": "^2.0",
-        "halleck45/phpmetrics-collector-bundle": "^0.0.1"
+        "halleck45/phpmetrics-collector-bundle": "^0.0.1",
+        "liip/monitor-bundle": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

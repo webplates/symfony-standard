@@ -83,3 +83,9 @@ lexik_maintenance:
     driver:
         class: Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
         options: {file_path: %kernel.storage_dir%/var/maintenance_lock}
+
+# Liip Monitor Configuration
+liip_monitor:
+    checks:
+        security_advisory:
+            lock_file: '%kernel.root_dir%/../composer.lock'

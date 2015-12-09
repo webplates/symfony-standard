@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
+            new Liip\MonitorBundle\LiipMonitorBundle(),
 
             new AppBundle\AppBundle(),
         );
