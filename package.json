@@ -4,7 +4,7 @@
     "license": "MIT",
     "repository": "",
     "private": true,
-    "devDependencies": {
+    "dependencies": {
         "autoprefixer": "^6.1.1",
         "browserify": "^12.0.1",
         "cssnano": "^3.3.2",
