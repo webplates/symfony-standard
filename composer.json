@@ -21,7 +21,6 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "lexik/maintenance-bundle": "^2.0",
-        "halleck45/phpmetrics-collector-bundle": "^0.0.1",
         "liip/monitor-bundle": "^2.1"
     },
     "require-dev": {
@@ -30,7 +29,8 @@
         "theofidry/psysh-bundle": "^1.1",
         "liip/functional-test-bundle": "^1.3@dev",
         "hautelook/alice-bundle": "^1.1",
-        "symfony/phpunit-bridge": "~2.7"
+        "symfony/phpunit-bridge": "~2.7",
+        "halleck45/phpmetrics-collector-bundle": "^0.0.1"
     },
     "scripts": {
         "post-install-cmd": [
