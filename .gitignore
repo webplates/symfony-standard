@@ -1,5 +1,7 @@
 # General
 /.vagrant/
+/.idea/
+.DS_Store
 
 # Symfony
 /app/config/parameters.yml
