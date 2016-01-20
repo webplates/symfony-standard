@@ -23,7 +23,7 @@
 
 - name: Create Symfony local directory
   sudo: yes
-  file: path=/opt/symfony state=directory owner=vagrant group=vagrant
+  file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
 
 - name: Install application dependencies
   sudo: no
@@ -35,3 +35,7 @@
   with_items:
     - php /vagrant/bin/console doctrine:migrations:migrate --no-interaction
     - php /vagrant/bin/console h:d:f:l --no-interaction
+
+- name: Fix permissions
+  sudo: yes
+  file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
