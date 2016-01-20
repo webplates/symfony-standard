@@ -5,7 +5,7 @@ server:
     install: '1'
     timezone: UTC
     locale: en_US.UTF-8
-    packages: [git, curl]
+    packages: [git]
 vagrant_local:
     install: '1'
     vm: { base_box: trusty64, hostname: symfony.dev, ip: 192.168.33.99, memory: '1024', sharedfolder: ./, syncType: nfs }
@@ -24,7 +24,7 @@ mysql:
 php:
     install: '1'
     ppa: php5-5.6
-    packages: [php5-fpm, php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-gd, php5-mysql]
+    packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-gd, php5-mysql]
 xdebug:
     install: '1'
     idekey: PHPSTORM
