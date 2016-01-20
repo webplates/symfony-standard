@@ -1,11 +1,11 @@
 # General
 /.vagrant/
 /.idea/
+/build/
 .DS_Store
 
 # Symfony
 /app/config/parameters.yml
-/build/
 /phpunit.xml
 /var/*
 !/var/cache
