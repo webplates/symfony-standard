@@ -4,7 +4,7 @@ app:
 server:
     install: '1'
     timezone: UTC
-    locale: hu_HU.UTF-8
+    locale: en_US.UTF-8
     packages: [git, curl]
 vagrant_local:
     install: '1'
