@@ -1,0 +1,37 @@
+application:
+    image: debian:jessie
+    volumes:
+        - ./:/var/www/symfony
+    tty: true
+    hostname: symfony
+    domainname: symfony.dev
+db:
+    image: mysql
+    ports:
+        - 3306:3306
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_ROOT_PASSWORD: ''
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: symfony
+        MYSQL_PASSWORD: symfony
+php:
+    build: docker/php-fpm
+    ports:
+        - 9000:9000
+    volumes_from:
+        - application
+    links:
+        - db
+nginx:
+    image: nginx
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes_from:
+        - application
+    volumes:
+        - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+        - ./docker/nginx/default.conf:/etc/nginx/sites-available/default.conf
+        - ./docker/nginx/upstream.conf:/etc/nginx/sites-available/default.conf
