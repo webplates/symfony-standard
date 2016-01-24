@@ -13,6 +13,8 @@ db:
     image: mysql
     ports:
         - 3306
+    volumes:
+        - ./var/mysqldata:/var/lib/mysql
     environment:
         MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         MYSQL_ROOT_PASSWORD: ''
