@@ -16,3 +16,9 @@ RUN apt-get update && apt-get install -y \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=9090" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+ENV COMPOSER_VERSION 1.0.0-alpha11
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION}
+
+WORKDIR /var/www/symfony
