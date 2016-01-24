@@ -33,5 +33,6 @@ server {
         include fastcgi_params;
 
         fastcgi_param SYMFONY__kernel__storage_dir '{{ app.storage_path }}';
+        fastcgi_param REMOTE_ADDR 127.0.0.1;
     }
 }
