@@ -10,7 +10,8 @@ frontend:
         - app
 
 db:
-    image: mysql
+    build: docker/mysql
+    command: mysqld --user=root
     ports:
         - 3306
     volumes:
@@ -24,6 +25,7 @@ db:
 
 php:
     build: docker/php-fpm
+    command: php-fpm --allow-to-run-as-root
     ports:
         - 9000
         - 9090
