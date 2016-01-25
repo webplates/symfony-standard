@@ -1,7 +1,7 @@
 app:
     image: debian:jessie
     volumes:
-        - ./:/var/www/symfony
+        - ./:/var/www
     tty: true
 
 frontend:

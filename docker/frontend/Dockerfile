@@ -27,4 +27,4 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 RUN npm install -g bower gulp-cli
 
-WORKDIR /var/www/symfony
+WORKDIR /var/www
