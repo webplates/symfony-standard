@@ -1,0 +1,74 @@
+app:
+    image: debian:jessie
+    volumes:
+        - ./:/var/www
+    tty: true
+
+frontend:
+    build: docker/frontend
+    volumes_from:
+        - app
+
+db:
+    image: mysql:latest
+    ports:
+        - 3306
+    volumes:
+        - ./var/mysqldata:/var/lib/mysql
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_ROOT_PASSWORD: ''
+        MYSQL_DATABASE: symfony
+        MYSQL_USER: symfony
+        MYSQL_PASSWORD: symfony
+
+php:
+    build: docker/php-fpm
+    ports:
+        - 9000
+        - 9090
+    volumes_from:
+        - app
+    links:
+        - db
+    environment:
+        XDEBUG_CONFIG: idekey=PHPSTORM
+
+web:
+    build: docker/nginx
+    ports:
+        - 80
+    links:
+        - php
+    volumes_from:
+        - app
+    volumes:
+        - ./var/logs/nginx/:/var/log/nginx
+
+elasticsearch:
+    image: elasticsearch
+    command: elasticsearch -Des.network.host=0.0.0.0
+    expose:
+        - 9200
+
+kibana:
+    image: kibana
+    ports:
+        - 5601
+    environment:
+        - ELASTICSEARCH_URL=http://elasticsearch:9200
+    links:
+        - elasticsearch
+
+logstash:
+    image: logstash
+    command: logstash -f /etc/logstash/logstash.conf
+    links:
+        - elasticsearch
+    volumes:
+        - ./docker/logstash:/etc/logstash
+        - ./docker/logstash/patterns:/opt/logstash/patterns
+    volumes_from:
+        - app
+        - php
+        - web
