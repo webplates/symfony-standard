@@ -66,13 +66,10 @@ services:
             - elasticsearch
 
     logstash:
-        image: logstash
+        build: etc/docker/logstash
         command: logstash -f /etc/logstash/logstash.conf
         links:
             - elasticsearch
-        volumes:
-            - ./etc/docker/logstash:/etc/logstash
-            - ./etc/docker/logstash/patterns:/opt/logstash/patterns
         volumes_from:
             - app
             - web
