@@ -1,74 +1,78 @@
-app:
-    image: debian:jessie
-    volumes:
-        - ./:/var/www
-    tty: true
+version: '2'
 
-frontend:
-    build: docker/frontend
-    volumes_from:
-        - app
+services:
+    app:
+        image: debian:jessie
+        volumes:
+            - .:/var/www
+            - .docker/app/var:/var/www/var
+        tty: true
 
-db:
-    image: mysql:latest
-    ports:
-        - 3306
-    volumes:
-        - ./var/mysqldata:/var/lib/mysql
-    environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-        MYSQL_ROOT_PASSWORD: ''
-        MYSQL_DATABASE: symfony
-        MYSQL_USER: symfony
-        MYSQL_PASSWORD: symfony
+    frontend:
+        build: docker/frontend
+        volumes_from:
+            - app
 
-php:
-    build: docker/php-fpm
-    ports:
-        - 9000
-        - 9090
-    volumes_from:
-        - app
-    links:
-        - db
-    environment:
-        XDEBUG_CONFIG: idekey=PHPSTORM
+    db:
+        image: mysql:latest
+        ports:
+            - 3306
+        volumes:
+            - .docker/mysql:/var/lib/mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: symfony
+            MYSQL_PASSWORD: symfony
 
-web:
-    build: docker/nginx
-    ports:
-        - 80
-    links:
-        - php
-    volumes_from:
-        - app
-    volumes:
-        - ./var/logs/nginx/:/var/log/nginx
+    php:
+        build: docker/php-fpm
+        ports:
+            - 9000
+            - 9090
+        volumes_from:
+            - app
+        links:
+            - db
+        environment:
+            XDEBUG_CONFIG: idekey=PHPSTORM
+            XDG_CONFIG_HOME: /var/www/var/.config # Required for PsySH
 
-elasticsearch:
-    image: elasticsearch
-    command: elasticsearch -Des.network.host=0.0.0.0
-    expose:
-        - 9200
+    web:
+        build: docker/nginx
+        ports:
+            - 80
+        links:
+            - php
+        volumes_from:
+            - app
+        volumes:
+            - .docker/logs/nginx/:/var/log/nginx
 
-kibana:
-    image: kibana
-    ports:
-        - 5601
-    environment:
-        - ELASTICSEARCH_URL=http://elasticsearch:9200
-    links:
-        - elasticsearch
+    elasticsearch:
+        image: elasticsearch
+        command: elasticsearch -Des.network.host=0.0.0.0
+        expose:
+            - 9200
 
-logstash:
-    image: logstash
-    command: logstash -f /etc/logstash/logstash.conf
-    links:
-        - elasticsearch
-    volumes:
-        - ./docker/logstash:/etc/logstash
-        - ./docker/logstash/patterns:/opt/logstash/patterns
-    volumes_from:
-        - app
-        - php
-        - web
+    kibana:
+        image: kibana
+        ports:
+            - 5601
+        environment:
+            - ELASTICSEARCH_URL=http://elasticsearch:9200
+        links:
+            - elasticsearch
+
+    logstash:
+        image: logstash
+        command: logstash -f /etc/logstash/logstash.conf
+        links:
+            - elasticsearch
+        volumes:
+            - ./docker/logstash:/etc/logstash
+            - ./docker/logstash/patterns:/opt/logstash/patterns
+        volumes_from:
+            - app
+            - web

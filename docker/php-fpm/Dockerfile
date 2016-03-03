@@ -1,4 +1,4 @@
-FROM php:5.6.17-fpm
+FROM php:5.6-fpm
 
 ENV COMPOSER_VERSION 1.0.0-alpha11
 

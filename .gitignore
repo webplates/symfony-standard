@@ -1,4 +1,5 @@
 # General
+/.docker/
 /.vagrant/
 /.idea/
 /build/
