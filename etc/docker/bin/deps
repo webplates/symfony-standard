@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker-compose run php composer install
+docker-compose run frontend npm install
+docker-compose run frontend bower install

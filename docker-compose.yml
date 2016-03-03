@@ -9,7 +9,7 @@ services:
         tty: true
 
     frontend:
-        build: docker/frontend
+        build: etc/docker/frontend
         volumes_from:
             - app
 
@@ -27,7 +27,7 @@ services:
             MYSQL_PASSWORD: symfony
 
     php:
-        build: docker/php-fpm
+        build: etc/docker/php-fpm
         ports:
             - 9000
             - 9090
@@ -40,7 +40,7 @@ services:
             XDG_CONFIG_HOME: /var/www/var/.config # Required for PsySH
 
     web:
-        build: docker/nginx
+        build: etc/docker/nginx
         ports:
             - 80
         links:
@@ -71,8 +71,8 @@ services:
         links:
             - elasticsearch
         volumes:
-            - ./docker/logstash:/etc/logstash
-            - ./docker/logstash/patterns:/opt/logstash/patterns
+            - ./etc/docker/logstash:/etc/logstash
+            - ./etc/docker/logstash/patterns:/opt/logstash/patterns
         volumes_from:
             - app
             - web

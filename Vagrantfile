@@ -44,12 +44,12 @@ Vagrant.configure("2") do |config|
     # If ansible is not found in the path it will be instaled in the VM and provisioned from there
     if which('ansible-playbook')
         config.vm.provision "ansible" do |ansible|
-            ansible.playbook = "ansible/playbook.yml"
-            ansible.inventory_path = "ansible/inventories/dev"
+            ansible.playbook = "etc/ansible/playbook.yml"
+            ansible.inventory_path = "etc/ansible/inventories/dev"
             ansible.limit = 'all'
         end
     else
-        config.vm.provision :shell, path: "ansible/windows.sh", args: ["symfony.dev"]
+        config.vm.provision :shell, path: "etc/ansible/windows.sh", args: ["symfony.dev"]
     end
 
     config.vm.synced_folder "./", "/vagrant", type: "nfs"

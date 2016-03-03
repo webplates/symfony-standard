@@ -9,4 +9,4 @@
  when you run `gulp`.
  */
 
-require('./gulp');
+require('./etc/gulp/');
