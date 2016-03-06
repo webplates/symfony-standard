@@ -30,9 +30,9 @@ RUN set -x \
 
 ADD php.ini /usr/local/etc/php/php.ini
 
-ADD execute.sh /usr/local/bin/execute.sh
-RUN chmod +x /usr/local/bin/execute.sh
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www
 
-ENTRYPOINT ["execute.sh"]
+ENTRYPOINT ["entrypoint.sh"]
