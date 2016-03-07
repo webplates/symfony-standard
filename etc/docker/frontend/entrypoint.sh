@@ -8,7 +8,7 @@ fi
 
 MYUID=`stat -c "%u" .`
 
-if [ "$MYUID" -gt '0' ]; then
+if [[ "$MYUID" -gt '0' && "$MYUID" != `id -u frontend` ]]; then
     usermod -u $MYUID frontend
 fi
 

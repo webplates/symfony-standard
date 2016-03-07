@@ -8,7 +8,7 @@ fi
 
 MYUID=`stat -c "%u" .`
 
-if [ "$MYUID" -gt '0' ]; then
+if [[ "$MYUID" -gt '0' && "$MYUID" != `id -u www-data` ]]; then
     usermod -u $MYUID www-data
 fi
 
