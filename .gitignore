@@ -1,5 +1,4 @@
 # General
-/.docker/
 /.vagrant/
 /.idea/
 /build/
@@ -32,7 +31,6 @@
 /node_modules/
 /npm-debug.log
 /src/AppBundle/Resources/public/
-
 
 # Favicons
 /app/Resources/views/favicons.html.twig
