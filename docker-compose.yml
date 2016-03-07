@@ -5,20 +5,22 @@ services:
         image: debian:jessie
         volumes:
             - .:/var/www
-            - .docker/app/var:/var/www/var
         tty: true
 
     frontend:
         build: etc/docker/frontend
         volumes_from:
             - app
+        environment:
+            NPM_CONFIG_PREFIX: /var/www/var/docker/npm/prefix
+            NPM_CONFIG_CACHE: /var/www/var/docker/npm/cache
 
     db:
         image: mysql:latest
         ports:
             - 3306
         volumes:
-            - .docker/mysql:/var/lib/mysql
+            - ./var/docker/mysql:/var/lib/mysql
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
             MYSQL_ROOT_PASSWORD: ''
@@ -37,7 +39,8 @@ services:
             - db
         environment:
             XDEBUG_CONFIG: idekey=PHPSTORM
-            XDG_CONFIG_HOME: /var/www/var/.config # Required for PsySH
+            XDG_CONFIG_HOME: /var/www/var/docker/.config # Required for PsySH
+            COMPOSER_HOME: /var/www/var/docker/composer
 
     web:
         build: etc/docker/nginx
@@ -48,7 +51,7 @@ services:
         volumes_from:
             - app
         volumes:
-            - .docker/logs/nginx/:/var/log/nginx
+            - ./var/docker/nginx:/var/log/nginx
 
     elasticsearch:
         image: elasticsearch

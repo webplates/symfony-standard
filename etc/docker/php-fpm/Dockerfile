@@ -33,6 +33,8 @@ ADD php.ini /usr/local/etc/php/php.ini
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+RUN groupdel dialout # On Mac dialout GID = staff GID
+
 WORKDIR /var/www
 
 ENTRYPOINT ["entrypoint.sh"]
