@@ -46,8 +46,6 @@ RUN adduser frontend
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-RUN groupdel dialout # On Mac dialout GID = staff GID
-
 WORKDIR /var/www
 
 ENTRYPOINT ["entrypoint.sh"]
