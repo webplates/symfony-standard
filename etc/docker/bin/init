@@ -1,6 +1,5 @@
 #!/bin/bash
 
-docker-compose run php chown -R www-data. /var/www/var
-docker-compose run -u www-data php bin/console cache:clear
-docker-compose run -u www-data php bin/console doctrine:migrations:migrate --no-interaction
-docker-compose run -u www-data php bin/console h:d:f:l --no-interaction
+docker-compose run php bin/console cache:clear
+docker-compose run php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose run php bin/console h:d:f:l --no-interaction
