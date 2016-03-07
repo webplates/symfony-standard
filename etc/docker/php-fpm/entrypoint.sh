@@ -2,22 +2,22 @@
 
 set -e
 
+CUSER="www-data"
 MYUID=`stat -c "%u" .`
 
-if [[ "$MYUID" -gt '0' && "$MYUID" != `id -u www-data` ]]; then
-    usermod -u $MYUID www-data
+if [[ "$MYUID" -gt '0' && "$MYUID" != `id -u ${CUSER}` ]]; then
+    usermod -u ${MYUID} ${CUSER}
 fi
 
-if [[ "$1" = 'root' ]]; then
-    exec /bin/bash
-fi
-
-if [[ "$1" = 'shell' ]]; then
-    gosu www-data "/bin/bash"
-fi
-
-if [[ "$1" = 'php-fpm' || "$1" = '' ]]; then
-    exec php-fpm
-fi
-
-gosu www-data "$@"
+case "$1" in
+    "root")
+      exec /bin/bash ;;
+    "shell")
+      gosu ${CUSER} "/bin/bash" ;;
+    "php-fpm")
+      exec php-fpm ;;
+    "")
+      exec php-fpm ;;
+    *)
+      gosu ${CUSER} "$@" ;;
+esac
