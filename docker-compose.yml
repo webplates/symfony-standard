@@ -38,6 +38,7 @@ services:
         links:
             - db
         environment:
+            HISTFILE: /var/www/var/docker/.bash_history
             XDEBUG_CONFIG: idekey=PHPSTORM
             XDG_CONFIG_HOME: /var/www/var/docker/.config # Required for PsySH
             COMPOSER_HOME: /var/www/var/docker/composer
