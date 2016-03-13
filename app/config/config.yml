@@ -21,14 +21,13 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
-        save_path:   %kernel.storage_dir%/var/sessions/%kernel.environment%
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.storage_dir%/var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
     assets: ~
@@ -60,13 +59,6 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Doctrine Migrations Configuration
-doctrine_migrations:
-    dir_name: "%kernel.root_dir%/migrations"
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -74,6 +66,13 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Doctrine Migrations Configuration
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/migrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
 
 # Lexik Maintenance Configuration
 lexik_maintenance:
