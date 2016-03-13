@@ -25,6 +25,6 @@ define('KERNEL_STORAGE_DIR', $storageDir);
  */
 $loader = require KERNEL_STORAGE_DIR.'/vendor/autoload.php';
 
-AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
+AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 
 return $loader;
