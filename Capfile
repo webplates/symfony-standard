@@ -16,8 +16,14 @@ require "capistrano/deploy"
 # Include Symfony specific tasks
 require "capistrano/symfony"
 
-# Include maintenance tasks
-require "capistrano/maintenance"
+# Include NPM tasks to install Node dependencies
+require "capistrano/npm"
+
+# Include Bower tasks to install frontend dependencies
+require "capistrano/bower"
+
+# Include Gulp tasks to build assets
+require "capistrano/gulp"
 
 # Airbrush - console output beautifier
 require "airbrussh/capistrano"
@@ -31,26 +37,11 @@ require "capistrano/invoke"
 # Add custom banner
 require "capistrano/banner"
 
-# Allow deployments to be blocked (for whatever reasons)
-require "capistrano/deploy_block"
-
 # Load Dotenv-like files
 require "capistrano/env-config"
 
-# Check pending commits
-require "capistrano-pending"
-
 # Help with SSH related problems
 require "capistrano/ssh_doctor"
-
-# Log tailing
-require "capistrano/logtail"
-
-# Notifications
-# require "capistrano/notifications"
-
-# Store secrets
-require "capistrano/secret"
 
 # Load custom tasks from `app/deploy/tasks` if you have any defined
 Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rake").each { |r| import r }
