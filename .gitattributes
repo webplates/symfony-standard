@@ -3,11 +3,11 @@
 .gitignore                     export-ignore
 .stylelintrc                   export-ignore
 /app/config/config_test.yml    export-ignore
-/app/deploy/                   export-ignore
 /Capfile                       export-ignore
 /docker-compose.yml            export-ignore
-/etc/ansible                   export-ignore
-/etc/docker                    export-ignore
+/etc/ansible/                  export-ignore
+/etc/deploy/                   export-ignore
+/etc/docker/                   export-ignore
 /Gemfile                       export-ignore
 /phpunit.xml.dist              export-ignore
 /tests/                        export-ignore

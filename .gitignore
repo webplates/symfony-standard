@@ -23,7 +23,6 @@
 
 # Capistrano
 /.env*
-/app/deploy/secret/
 /log/
 
 # Node - Bower - Gulp

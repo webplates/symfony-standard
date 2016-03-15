@@ -1,9 +1,9 @@
 # Override the path before running the setup
-set :deploy_path, "app/deploy"
+set :deploy_path, "etc/deploy"
 set :deploy_config_path, fetch(:deploy_path) + "/deploy.rb"
 set :stage_config_path, fetch(:deploy_path) + "/stages/"
 
-# Add custom load path `app/deploy/lib` for custom requirements
+# Add custom load path `etc/deploy/lib` for custom requirements
 lib = File.expand_path(fetch(:deploy_path) + "/lib")
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -43,5 +43,5 @@ require "capistrano/env-config"
 # Help with SSH related problems
 require "capistrano/ssh_doctor"
 
-# Load custom tasks from `app/deploy/tasks` if you have any defined
+# Load custom tasks from `etc/deploy/tasks` if you have any defined
 Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rake").each { |r| import r }
