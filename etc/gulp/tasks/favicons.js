@@ -2,7 +2,8 @@ var gulp     = require('gulp');
 var config   = require('../config');
 var del      = require('del');
 var size     = require('gulp-size');
-var favicons = require('gulp-favicons');
+var favicons = require('favicons/es5');
+var gutil    = require("gulp-util");
 
 gulp.task('clean:favicons', function() {
     return del([
@@ -25,7 +26,7 @@ gulp.task('clean:favicons', function() {
 
 gulp.task('favicons', ['clean:favicons'], function () {
     return gulp.src(config.src + '/img/symfony_logo.png')
-        .pipe(favicons({
+        .pipe(favicons.stream({
             appName: 'Symfony',
             appDescription: 'This is my application',
             background: '#ffffff',
@@ -38,6 +39,7 @@ gulp.task('favicons', ['clean:favicons'], function () {
             online: false,
             html: 'app/Resources/views/favicons.html.twig'
         }))
+        .on("error", gutil.log)
         .pipe(size({title: 'favicons'}))
         .pipe(gulp.dest('web/'));
 });
