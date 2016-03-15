@@ -26,7 +26,7 @@ set :linked_dirs, [
     fetch(:web_path) + "/uploads"
 ]
 set :copy_files, [
-    "bower_components",
+    "bower_components/",
     "node_modules/",
     "vendor/"
 ]
