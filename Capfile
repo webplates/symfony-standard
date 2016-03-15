@@ -43,5 +43,8 @@ require "capistrano/env-config"
 # Help with SSH related problems
 require "capistrano/ssh_doctor"
 
+# Include Copy task to speed up dependency installation
+require "capistrano/copy_files"
+
 # Load custom tasks from `etc/deploy/tasks` if you have any defined
 Dir.glob(fetch(:deploy_path) + "/tasks/**/*.rake").each { |r| import r }

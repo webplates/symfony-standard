@@ -11,3 +11,4 @@ gem 'capistrano-invoke', require: false
 gem 'capistrano-banner', require: false
 gem 'capistrano-env-config', require: false
 gem 'capistrano-ssh-doctor', '~> 1.0', require: false
+gem 'capistrano-copy-files', require: false
