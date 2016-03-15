@@ -30,7 +30,7 @@ set :linked_dirs, [
 # Deploy hooks
 namespace :deploy do
     after :starting, "composer:install_executable"
-    after :updated', "symfony:assets:install"
+    after :updated, "symfony:assets:install"
 end
 
 before "symfony:assets:install", "gulp"
