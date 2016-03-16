@@ -1,6 +1,6 @@
-var notify = require("gulp-notify");
+import notify from 'gulp-notify';
 
-module.exports = function() {
+export default function handleErrors() {
 
     var args = Array.prototype.slice.call(arguments);
 

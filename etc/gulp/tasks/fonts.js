@@ -1,14 +1,17 @@
-var gulp        = require('gulp');
-var del         = require('del');
-var size        = require('gulp-size');
-var config      = require('../config');
+import del from 'del';
+import size from 'gulp-size';
 
-gulp.task('clean:fonts', function() {
-    return del([config.dest + '/fonts/*']);
-});
+export default class FontTask {
+    static configure(gulp, config, env) {
+        gulp.task('clean:fonts', () => {
+            return del([config.dest + '/fonts/*']);
+        });
 
-gulp.task('fonts', ['clean:fonts'], function() {
-    return gulp.src('bower_components/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
-        .pipe(size({title: 'fonts'}))
-        .pipe(gulp.dest(config.dest + '/fonts'));
-});
+        gulp.task('fonts', ['clean:fonts'], () => {
+            return gulp.src(config.fonts)
+                .pipe(size({title: 'fonts'}))
+                .pipe(gulp.dest(config.dest + '/fonts'));
+        });
+
+    }
+}
