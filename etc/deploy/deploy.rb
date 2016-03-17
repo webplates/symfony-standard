@@ -12,7 +12,7 @@ set :controllers_to_clear, ["app_*.php", "config.php"]
 
 
 # NPM config
-set :npm_flags, '--silent --no-progress'
+set :npm_flags, "--silent --no-progress"
 
 
 # Banner
