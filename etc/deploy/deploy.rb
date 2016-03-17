@@ -11,6 +11,10 @@ set :session_path, fetch(:var_path) + "/sessions"
 set :controllers_to_clear, ["app_*.php", "config.php"]
 
 
+# NPM config
+set :npm_flags, '--silent --no-progress'
+
+
 # Banner
 set :banner_path, fetch(:deploy_path) + "/banner.txt"
 set :banner_options, {

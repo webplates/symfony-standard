@@ -1,6 +1,6 @@
-var notify = require("gulp-notify");
+import * as notify from "gulp-notify";
 
-module.exports = function swallowError (error) {
+export default function swallowError(error) {
     notify(error);
     this.emit('end');
-};
+}

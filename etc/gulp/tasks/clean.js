@@ -1,7 +1,9 @@
-var gulp    = require('gulp');
-var del     = require('del');
-var config  = require('../config');
+import del from 'del';
 
-gulp.task('clean', function() {
-    return del([config.dest + '/*']);
-});
+export default class CleanTask {
+    static configure(gulp, config, env) {
+        gulp.task('clean', () => {
+            return del([config.dest + '/*']);
+        });
+    }
+}

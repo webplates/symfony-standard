@@ -1,45 +1,36 @@
-var gulp     = require('gulp');
-var config   = require('../config');
-var del      = require('del');
-var size     = require('gulp-size');
-var favicons = require('favicons/es5');
-var gutil    = require("gulp-util");
+import del from 'del';
+import size from 'gulp-size';
+import favicons from 'favicons';
+import gutil from 'gulp-util';
 
-gulp.task('clean:favicons', function() {
-    return del([
-        'web/android-chrome-*.png',
-        'web/apple-touch-*.png',
-        'web/browserconfig.xml',
-        'web/coast-*.png',
-        'web/favicon.ico',
-        'web/favicon-*.png',
-        'web/firefox_app_*.png',
-        'web/manifest.json',
-        'web/manifest.webapp',
-        'web/mstile-*.png',
-        'web/open-graph.png',
-        'web/twitter.png',
-        'web/yandex-*.png',
-        'web/yandex-browser-manifest.json'
-    ]);
-});
+export default class FaviconTask {
+    static configure(gulp, config, env) {
+        gulp.task('clean:favicons', () => {
+            return del([
+                'web/android-chrome-*.png',
+                'web/apple-touch-*.png',
+                'web/browserconfig.xml',
+                'web/coast-*.png',
+                'web/favicon.ico',
+                'web/favicon-*.png',
+                'web/firefox_app_*.png',
+                'web/manifest.json',
+                'web/manifest.webapp',
+                'web/mstile-*.png',
+                'web/open-graph.png',
+                'web/twitter.png',
+                'web/yandex-*.png',
+                'web/yandex-browser-manifest.json'
+            ]);
+        });
 
-gulp.task('favicons', ['clean:favicons'], function () {
-    return gulp.src(config.src + '/img/symfony_logo.png')
-        .pipe(favicons.stream({
-            appName: 'Symfony',
-            appDescription: 'This is my application',
-            background: '#ffffff',
-            path: '/',
-            url: '/',
-            display: 'standalone',
-            orientation: 'portrait',
-            version: 1.0,
-            logging: false,
-            online: false,
-            html: 'app/Resources/views/favicons.html.twig'
-        }))
-        .on("error", gutil.log)
-        .pipe(size({title: 'favicons'}))
-        .pipe(gulp.dest('web/'));
-});
+        gulp.task('favicons', ['clean:favicons'], () => {
+            return gulp.src(config.src + config.favicons.src)
+                .pipe(favicons.stream(config.favicons.config))
+                .on("error", gutil.log)
+                .pipe(size({title: 'favicons'}))
+                .pipe(gulp.dest('web/'));
+        });
+
+    }
+}

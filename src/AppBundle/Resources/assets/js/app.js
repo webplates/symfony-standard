@@ -1,15 +1,19 @@
-'use strict';
+import $ from 'jquery';
 
-$ = window.$ = window.jQuery = require('jquery');
-var domready = require('domready');
-require('bootstrap');
+window.$ = window.jQuery = $;
 
-var App = {
-    init: function() {
-
+class App {
+    constructor ($) {
+        this.$ = $;
     }
-};
 
-domready(function() {
-    App.init();
+    init () {
+        console.log('Loaded');
+    }
+}
+
+const app = new App($);
+
+$(document).ready(() => {
+    app.init();
 });

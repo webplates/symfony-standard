@@ -1,3 +1,5 @@
-var gulp = require('gulp');
-
-gulp.task('build', ['styles', 'scripts', 'fonts', 'images', 'favicons']);
+export default class BuildTask {
+    static configure(gulp, config, env) {
+        gulp.task('build', ['styles', 'scripts', 'fonts', 'images', 'favicons']);
+    }
+}
