@@ -3,11 +3,11 @@ import $ from 'jquery';
 window.$ = window.jQuery = $;
 
 class App {
-    constructor ($) {
+    constructor($) {
         this.$ = $;
     }
 
-    init () {
+    init() {
         console.log('Loaded');
     }
 }
