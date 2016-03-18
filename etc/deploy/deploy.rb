@@ -44,3 +44,9 @@ before "symfony:assets:install", "gulp"
 
 # System settings
 set :ssh_options, forward_agent: true
+
+
+# Airbrussh settings
+Airbrussh.configure do |config|
+    config.log_file = "var/logs/capistrano.log"
+end

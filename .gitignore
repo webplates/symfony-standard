@@ -1,6 +1,7 @@
 # General
-/.vagrant/
+/.env*
 /.idea/
+/.vagrant/
 /build/
 .DS_Store
 
@@ -20,10 +21,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-
-# Capistrano
-/.env*
-/log/
 
 # Node - Bower - Gulp
 /bower_components/
