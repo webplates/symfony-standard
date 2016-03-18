@@ -3,14 +3,14 @@ namespace :doctrine do
         desc "Drop doctrine schema"
         task :drop do
             on roles(:db) do
-                invoke "symfony:console", "doctrine:schema:drop", "--force"
+                symfony_console, "doctrine:schema:drop", "--force"
             end
         end
 
         desc "Create doctrine schema"
         task :create do
             on roles(:db) do
-                invoke "symfony:console", "doctrine:schema:create"
+                symfony_console, "doctrine:schema:create"
             end
         end
     end
@@ -19,7 +19,7 @@ namespace :doctrine do
         desc "Execute doctrine migrations"
         task :migrate do
             on roles(:db) do
-                invoke "symfony:console", "doctrine:migrations:migrate", "--no-interaction"
+                symfony_console, "doctrine:migrations:migrate", "--no-interaction"
             end
         end
     end
@@ -28,7 +28,7 @@ namespace :doctrine do
         desc "Load doctrine fixtures"
         task :load do
             on roles(:db) do
-                invoke "symfony:console", "doctrine:fixtures:load", "--no-interaction"
+                symfony_console, "doctrine:fixtures:load", "--no-interaction"
             end
         end
     end
