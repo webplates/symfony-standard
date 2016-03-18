@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'capistrano', '~> 3.1'
-gem 'capistrano-symfony', '~> 1.0.0.rc1', require: false
+gem 'capistrano-symfony', '1.0.0.rc1', require: false
 gem 'capistrano-npm', require: false
 gem 'capistrano-bower', require: false
 gem 'capistrano-gulp', require: false

@@ -1,12 +1,12 @@
-server "dev.symfony.com", user: "fabien", roles: [:app, :db, :web]
+server "dev.symfony.webplates.xyz", user: "webplates", roles: [:app, :db, :web]
 
 set :composer_install_flags, "--no-interaction --quiet --optimize-autoloader"
 
 set :symfony_env, "dev"
 
 after "deploy:updated", :build do
-    symfony_console, "doctrine:schema:drop", "--full-database --force"
+    invoke "doctrine:schema:drop_full"
     invoke "doctrine:migrations:migrate"
-    symfony_console, "h:d:f:l", "--no-interaction"
-    symfony_console, "cache:clear", "--env prod"
+    invoke "symfony:console", "h:d:f:l", "--no-interaction"
+    invoke "symfony:console", "cache:clear", "--env prod"
 end

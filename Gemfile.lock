@@ -32,7 +32,7 @@ GEM
       capistrano (>= 3.0.0)
     capistrano-ssh-doctor (1.0.0)
       capistrano (>= 3.1)
-    capistrano-symfony (1.0.0.rc2)
+    capistrano-symfony (1.0.0.rc1)
       capistrano (~> 3.1)
       capistrano-composer (~> 0.0.3)
       capistrano-file-permissions (~> 1.0)
@@ -65,7 +65,7 @@ DEPENDENCIES
   capistrano-list_stages
   capistrano-npm
   capistrano-ssh-doctor (~> 1.0)
-  capistrano-symfony (~> 1.0.0.rc1)
+  capistrano-symfony (= 1.0.0.rc1)
 
 BUNDLED WITH
    1.10.6
