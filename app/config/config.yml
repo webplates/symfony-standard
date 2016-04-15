@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: extras.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -66,25 +67,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-# Doctrine Migrations Configuration
-doctrine_migrations:
-    dir_name: "%kernel.root_dir%/migrations"
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
-
-# Lexik Maintenance Configuration
-lexik_maintenance:
-    authorized:
-        ips: "%maintenance_ips%"
-    driver:
-        class: Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
-        options:
-            file_path: "%kernel.storage_dir%/var/cache/%kernel.environment%/maintenance_lock"
-
-# Liip Monitor Configuration
-liip_monitor:
-    checks:
-        security_advisory:
-            lock_file: '%kernel.root_dir%/../composer.lock'

@@ -1,0 +1,4 @@
+imports:
+    - { resource: extras/migrations.yml }
+    - { resource: extras/maintenance.yml }
+    - { resource: extras/monitor.yml }

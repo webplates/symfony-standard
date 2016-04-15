@@ -1,0 +1,4 @@
+liip_monitor:
+    checks:
+        security_advisory:
+            lock_file: '%kernel.root_dir%/../composer.lock'

@@ -1,0 +1,7 @@
+lexik_maintenance:
+    authorized:
+        ips: "%maintenance_ips%"
+    driver:
+        class: Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
+        options:
+            file_path: "%kernel.cache_dir%/maintenance_lock"
