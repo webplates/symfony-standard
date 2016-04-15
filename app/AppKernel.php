@@ -31,7 +31,6 @@ class AppKernel extends Kernel
             $bundles[] = new Fidry\PsyshBundle\PsyshBundle();
             $bundles[] = new Liip\FunctionalTestBundle\LiipFunctionalTestBundle();
             $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
-            $bundles[] = new Hal\Bundle\PhpMetricsCollector\PhpMetricsCollectorBundle();
         }
 
         return $bundles;
