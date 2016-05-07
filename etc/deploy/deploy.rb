@@ -1,7 +1,6 @@
-set :application, "webplates/symfony"
+set :application, "webplates_symfony"
 set :repo_url, "git@github.com:webplates/symfony-standard.git"
 set :branch, ENV["BRANCH"] || "master"
-
 
 # Symfony settings
 set :session_path, fetch(:var_path) + "/sessions"
@@ -47,6 +46,4 @@ set :ssh_options, forward_agent: true
 
 
 # Airbrussh settings
-Airbrussh.configure do |config|
-    config.log_file = "var/logs/capistrano.log"
-end
+set :format_options, log_file: "var/logs/capistrano.log"

@@ -25,9 +25,6 @@ require "capistrano/bower"
 # Include Gulp tasks to build assets
 require "capistrano/gulp"
 
-# Airbrush - console output beautifier
-require "airbrussh/capistrano"
-
 # List stages
 require "capistrano/list_stages"
 
