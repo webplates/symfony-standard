@@ -1,0 +1,36 @@
+language: php
+
+sudo: false
+
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+
+php:
+    - 5.5
+    - 5.6
+    - 7.0
+    - hhvm
+
+env:
+    global:
+        - SYMFONY_ENV=test
+        - TEST_COMMAND="composer test"
+
+matrix:
+    fast_finish: true
+    include:
+        - php: 5.5
+          env: TEST_COMMAND="composer test-ci"
+
+before_install:
+    - travis_retry composer self-update
+
+install:
+    - travis_retry composer install --prefer-dist --no-interaction
+
+before_script:
+    - php bin/console doctrine:schema:update --force
+
+script:
+    - $TEST_COMMAND
