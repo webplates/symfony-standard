@@ -1,0 +1,14 @@
+default:
+    suites:
+        app:
+            type: symfony_bundle
+            contexts:
+                - AppBundle\Features\Context\FeatureContext
+                - AppBundle\Features\Context\DatabaseAwareContext
+            bundle: AppBundle
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~
