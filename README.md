@@ -1,5 +1,7 @@
 # Symfony Standard Edition
 
+[![Build Status](https://travis-ci.org/webplates/symfony-standard.svg?branch=master)](https://travis-ci.org/webplates/symfony-standard)
+
 > Welcome to the Symfony Standard Edition - a fully-functional Symfony2
 > application that you can use as the skeleton for your new applications.
 
