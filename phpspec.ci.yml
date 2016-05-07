@@ -1,0 +1,10 @@
+suites:
+    app_suite:
+        namespace: AppBundle
+        psr4_prefix: AppBundle
+formatter.name: pretty
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+code_coverage:
+    format: clover
+    output: build/coverage.xml

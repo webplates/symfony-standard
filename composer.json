@@ -8,7 +8,7 @@
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
-        "psr-4": { "Tests\\": "tests/" }
+        "psr-4": { "Tests\\": "tests/", "spec\\": "spec/" }
     },
     "require": {
         "php": ">=5.5.9",
@@ -30,7 +30,9 @@
         "theofidry/psysh-bundle": "^2.0",
         "liip/functional-test-bundle": "^1.5",
         "hautelook/alice-bundle": "^1.2",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "phpspec/phpspec": "^2.4",
+        "henrikbjorn/phpspec-code-coverage": "^2.0"
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,9 +1,9 @@
 # General
+.DS_Store
 /.env*
 /.idea/
 /.vagrant/
 /build/
-.DS_Store
 
 # Symfony
 /app/config/parameters.yml
@@ -44,3 +44,6 @@
 /web/twitter.png
 /web/yandex-*.png
 /web/yandex-browser-manifest.json
+
+# Testing
+/phpspec.yml

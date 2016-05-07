@@ -10,6 +10,8 @@
 /Gemfile.lock       export-ignore
 /gulpfile.babel.js  export-ignore
 /package.json       export-ignore
+/phpspec.ci.yml     export-ignore
+/phpspec.yml.dist   export-ignore
 /phpunit.xml.dist   export-ignore
 /tests/             export-ignore
 /Vagrantfile        export-ignore
