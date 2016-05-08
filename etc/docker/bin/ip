@@ -1,6 +1,6 @@
 #!/bin/bash
 
 CONTAINER="$1"
-IP=$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' `docker ps | grep ${CONTAINER} | awk '{print $1}'`)
+PROJECT=$(echo ${PWD##*/} | tr -dc '[:alnum:]\n\r' | tr '[:upper:]' '[:lower:]')
 
-echo ${IP}
+echo "$(docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} {{.Config.Image}}' `docker ps | grep ${PROJECT}_${CONTAINER} | awk '{print $1}'`)"
