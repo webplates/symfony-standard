@@ -4,6 +4,7 @@
 /.idea/
 /.vagrant/
 /build/
+/etc/**/*.env
 
 # Symfony
 /app/config/parameters.yml

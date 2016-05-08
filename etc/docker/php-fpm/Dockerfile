@@ -1,5 +1,6 @@
 FROM php:5.6-fpm
 
+ARG USE_XDEBUG=no
 ENV COMPOSER_VERSION 1.0.0-alpha11
 
 RUN apt-get update && apt-get install -qqy git libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev libicu-dev
@@ -8,11 +9,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) iconv mcrypt mbstring intl gd pdo pdo_mysql zip
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_port=9090" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN set -ex \
+	&& if [ $USE_XDEBUG = "yes" ]; then \
+        pecl install xdebug && docker-php-ext-enable xdebug; \
+        echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        echo "xdebug.remote_port=9090" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+	fi
 
 # grab gosu for easy step-down from root
 # (nicked from https://github.com/docker-library/postgres/blob/master/9.4/Dockerfile)
@@ -27,6 +32,12 @@ RUN set -x \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true
+
+RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
+    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/${VERSION} \
+    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
+    && mv /tmp/blackfire-*.so `php -r "echo ini_get('extension_dir');"`/blackfire.so \
+    && echo "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707" > $PHP_INI_DIR/conf.d/blackfire.ini
 
 ADD php.ini /usr/local/etc/php/php.ini
 
