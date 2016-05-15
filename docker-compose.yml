@@ -51,6 +51,7 @@ services:
         volumes_from:
             - app
         volumes:
+            - ./etc/nginx:/etc/nginx/conf.d
             - ./var/docker/nginx:/var/log/nginx
 
     php_debug:
@@ -81,6 +82,7 @@ services:
         volumes_from:
             - app
         volumes:
+            - ./etc/nginx:/etc/nginx/conf.d
             - ./var/docker/nginx:/var/log/nginx
 
     # Set your blackfire IDs and tokens as environment variables

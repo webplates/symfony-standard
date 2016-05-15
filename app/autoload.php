@@ -10,7 +10,7 @@ error_reporting(error_reporting() & ~E_USER_DEPRECATED);
 $storageDir = getenv('SYMFONY__kernel__storage_dir');
 
 if (empty($storageDir)) {
-    $storageDir =  dirname(__DIR__);
+    $storageDir = dirname(__DIR__);
 
     putenv('SYMFONY__kernel__storage_dir='.$storageDir);
     $_SERVER['SYMFONY__kernel__storage_dir'] = $storageDir;

@@ -1,0 +1,32 @@
+---
+# application tasks to be customized and to run after the main provision
+
+- name: Set kernel storage path
+  become: no
+  lineinfile:
+    dest=/home/vagrant/.profile
+    line="export SYMFONY__kernel__storage_dir=\"/opt/symfony\""
+    regexp="^export SYMFONY__kernel__storage_dir"
+    state=present
+    insertafter=EOF
+    create=yes
+
+- name: Set Composer install path
+  become: no
+  lineinfile:
+    dest=/home/vagrant/.profile
+    line="export COMPOSER_VENDOR_DIR=\"${SYMFONY__kernel__storage_dir}/vendor\""
+    regexp="^export COMPOSER_VENDOR_DIR"
+    state=present
+    insertafter=EOF
+    create=yes
+
+- name: Create Symfony local directory
+  file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
+
+- name: Restart services
+  debug: msg="Restarting services"
+  notify:
+    - restart php-fpm
+    - restart blackfire-agent
+    - restart nginx

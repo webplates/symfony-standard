@@ -1,0 +1,23 @@
+---
+app:
+    storage_path: /opt/symfony
+server:
+    timezone: UTC
+    locale: en_US.UTF-8
+    packages: [git, htop, iotop]
+mariadb:
+    root_password: ''
+    database: symfony
+    user: symfony
+    password: symfony
+php:
+    version: 5.6
+    packages: [intl, mcrypt, curl, gd, mysql, mbstring, xml, zip]
+    pecl_packages: []
+blackfire:
+    server_id:
+    server_token:
+xdebug:
+    idekey: PHPSTORM
+nodejs:
+    version: 6.x

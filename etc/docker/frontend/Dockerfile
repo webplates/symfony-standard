@@ -1,4 +1,4 @@
-FROM buildpack-deps:wheezy
+FROM buildpack-deps:trusty
 
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
@@ -16,7 +16,7 @@ RUN set -ex \
   done
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 5.4.1
+ENV NODE_VERSION 6.1.0
 
 RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
   && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -26,6 +26,10 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc
 
 RUN npm install -g bower gulp-cli
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y build-essential libc6
 
 # grab gosu for easy step-down from root
 # (nicked from https://github.com/docker-library/postgres/blob/master/9.4/Dockerfile)
