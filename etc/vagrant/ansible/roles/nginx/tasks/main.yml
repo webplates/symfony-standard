@@ -1,6 +1,9 @@
 ---
-- name: Install Nginx
+- name: Install nginx
   apt: pkg=nginx state=latest
+
+- name: Enable nginx
+  service: name=nginx enabled=yes
 
 - name: Remove default nginx config
   file: path=/etc/nginx/sites-available/default state=absent

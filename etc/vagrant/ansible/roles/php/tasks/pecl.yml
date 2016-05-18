@@ -1,3 +1,4 @@
+---
 - name: Install
   apt: pkg="php{{ php.version }}-dev" state=present
   when: php.pecl_packages is defined
@@ -24,3 +25,4 @@
   shell: php5enmod {{ item }}
   with_items: "{{ php.pecl_packages }}"
   when: php.pecl_packages is defined
+  notify: restart php-fpm

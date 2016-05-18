@@ -23,10 +23,3 @@
 
 - name: Create Symfony local directory
   file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
-
-- name: Restart services
-  debug: msg="Restarting services"
-  notify:
-    - restart php-fpm
-    - restart blackfire-agent
-    - restart nginx
