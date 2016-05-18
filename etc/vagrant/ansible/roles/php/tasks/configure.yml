@@ -3,23 +3,11 @@
   lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;?user' line='user = vagrant'"
   notify: restart php-fpm
 
-- name: Set permissions on socket - owner
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;?listen.owner' line='listen.owner = vagrant'"
-  notify: restart php-fpm
-
-- name: Set permissions on socket - group
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;?listen.group' line='listen.group = www-data'"
-  notify: restart php-fpm
-
-- name: Set permissions on socket - mode
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;?listen.mode' line='listen.mode = 0660'"
-  notify: restart php-fpm
-
 - name: Set listen port
   lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='listen =' line='listen = 9000'"
   notify: restart php-fpm
 
-- name: Catch workers ourput
+- name: Catch workers output
   lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;catch_workers_output' line='catch_workers_output = yes'"
   notify: restart php-fpm
 
