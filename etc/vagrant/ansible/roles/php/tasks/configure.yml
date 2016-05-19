@@ -1,23 +1,23 @@
 ---
 - name: Set PHP user
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;?user' line='user = vagrant'"
+  lineinfile: dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp="^;?user" line="user = vagrant"
   notify: restart php-fpm
 
 - name: Set listen port
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='listen =' line='listen = 9000'"
+  lineinfile: dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp="listen =" line="listen = 9000"
   notify: restart php-fpm
 
 - name: Catch workers output
-  lineinfile: "dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp='^;catch_workers_output' line='catch_workers_output = yes'"
+  lineinfile: dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp="^;catch_workers_output" line="catch_workers_output = yes"
   notify: restart php-fpm
 
-- name: ensure timezone is set in fpm php.ini
+- name: Ensure timezone is set in fpm php.ini
   lineinfile: dest=/etc/php/{{ php.version }}/fpm/php.ini
               regexp='date.timezone ='
               line='date.timezone = {{ server.timezone }}'
   notify: restart php-fpm
 
-- name: ensure timezone is set in cli php.ini
+- name: Ensure timezone is set in cli php.ini
   lineinfile: dest=/etc/php/{{ php.version }}/cli/php.ini
               regexp='date.timezone ='
               line='date.timezone = {{ server.timezone }}'
@@ -30,5 +30,4 @@
     line="env[SYMFONY__kernel__storage_dir]=\"/opt/symfony\""
     state=present
     insertafter=EOF
-    create=yes
   notify: restart php-fpm
