@@ -1,8 +1,8 @@
 import * as environment from 'gulp-environments';
 
 export const config = {
-    src: 'src/AppBundle/Resources/assets',
-    dest: 'src/AppBundle/Resources/public',
+    src: 'app/Resources/assets',
+    dest: 'web/assets',
     favicons: {
         src: '/img/symfony_logo.png',
         config: {
