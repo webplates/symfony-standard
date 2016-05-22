@@ -29,6 +29,5 @@ export default class ScriptTask {
                 .pipe(env.dev(sourcemaps.write('./')))
                 .pipe(gulp.dest(config.dest + '/js'));
         });
-
     }
 }

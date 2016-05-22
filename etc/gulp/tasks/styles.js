@@ -30,7 +30,7 @@ export default class StyleTask {
 
             processors.push(postCSS.reporter());
 
-            return gulp.src(config.src + '/scss/style.scss')
+            return gulp.src(config.styles.src)
                 .pipe(env.dev(sourcemaps.init({loadMaps: true})))
                 .pipe(sass().on('error', sass.logError))
                 .pipe(postcss(processors))

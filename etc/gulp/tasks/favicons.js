@@ -25,12 +25,11 @@ export default class FaviconTask {
         });
 
         gulp.task('favicons', ['clean:favicons'], () => {
-            return gulp.src(config.src + config.favicons.src)
+            return gulp.src(config.favicons.src)
                 .pipe(favicons.stream(config.favicons.config))
-                .on("error", gutil.log)
+                .on('error', gutil.log)
                 .pipe(size({title: 'favicons'}))
                 .pipe(gulp.dest('web/'));
         });
-
     }
 }

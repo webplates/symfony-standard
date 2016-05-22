@@ -1,10 +1,13 @@
 import * as environment from 'gulp-environments';
 
+const sourceDir = 'app/Resources/assets';
+const targetDir = 'web/assets';
+
 export const config = {
-    src: 'app/Resources/assets',
-    dest: 'web/assets',
+    src: sourceDir,
+    dest: targetDir,
     favicons: {
-        src: '/img/symfony_logo.png',
+        src: sourceDir + '/img/logo.png',
         config: {
             appName: 'Symfony',
             appDescription: 'This is my application',
@@ -19,8 +22,10 @@ export const config = {
             html: 'app/Resources/views/favicons.html.twig'
         }
     },
+    images: sourceDir + '/img/**/*.{png,svg,jpg,gif}',
     fonts: 'bower_components/font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}',
     styles: {
+        src: sourceDir + '/scss/style.scss',
         browsers: [
             'ie >= 10',
             'ie_mob >= 10',

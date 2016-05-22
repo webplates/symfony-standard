@@ -14,7 +14,7 @@ export default class ImageTask {
         });
 
         gulp.task('images', ['clean:images'], () => {
-            return gulp.src(config.src + '/img/**/*.{png,svg,jpg,gif}')
+            return gulp.src(config.images)
                 .pipe(imagemin({
                     progressive: true,
                     svgoPlugins: [{removeViewBox: false}],

@@ -12,6 +12,5 @@ export default class FontTask {
                 .pipe(size({title: 'fonts'}))
                 .pipe(gulp.dest(config.dest + '/fonts'));
         });
-
     }
 }
