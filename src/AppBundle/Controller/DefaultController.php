@@ -13,19 +13,19 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @Template()
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return [
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ]);
+        ];
     }
 
     /**
      * @ParamConverter("user", options={"mapping": {"user": "username"}})
      * @Route("/hello/{user}", name="hello", defaults={"user" = "fabien"})
-     * @Template("default/hello.html.twig")
+     * @Template()
      */
     public function helloAction(User $user)
     {
