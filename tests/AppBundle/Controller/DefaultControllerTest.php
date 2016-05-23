@@ -24,7 +24,7 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         /** @var User $user */
-        $user = $fixtures['user1'];
+        $user = $fixtures['admin'];
 
         $client = static::createClient();
 
