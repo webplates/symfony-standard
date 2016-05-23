@@ -1,4 +1,4 @@
 AppBundle\Entity\User:
-    user1:
-        username: fabien
-        name: Fabien Potencier
+    admin:
+        username: admin
+        name: Administrator

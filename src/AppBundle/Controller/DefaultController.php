@@ -24,7 +24,7 @@ class DefaultController extends Controller
 
     /**
      * @ParamConverter("user", options={"mapping": {"user": "username"}})
-     * @Route("/hello/{user}", name="hello", defaults={"user" = "fabien"})
+     * @Route("/hello/{user}", name="hello", defaults={"user" = "admin"})
      * @Template()
      */
     public function helloAction(User $user)

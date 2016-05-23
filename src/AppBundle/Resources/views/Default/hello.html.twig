@@ -5,7 +5,6 @@
         <div id="container">
             <div id="welcome">
                 <h1>Hello, {{ user.getName() }}!</h1>
-                <img src="{{ asset('bundles/app/img/%s.jpg'|format(user.getUsername())) }}" alt="{{ user.getName() }}">
             </div>
         </div>
     </div>
