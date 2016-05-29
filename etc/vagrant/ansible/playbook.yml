@@ -15,5 +15,5 @@
     - nodejs
     - app
   environment:
-    SYMFONY__kernel__storage_dir: /opt/symfony
-    COMPOSER_VENDOR_DIR: /opt/symfony/vendor
+    SYMFONY__kernel__logs_dir: /opt/symfony/logs
+    SYMFONY__kernel__cache_dir: /opt/symfony/cache

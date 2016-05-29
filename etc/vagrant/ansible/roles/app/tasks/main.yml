@@ -1,22 +1,22 @@
 ---
 # application tasks to be customized and to run after the main provision
 
-- name: Set kernel storage path
+- name: Set kernel cache path
   become: no
   lineinfile:
     dest=/home/vagrant/.profile
-    line="export SYMFONY__kernel__storage_dir=\"/opt/symfony\""
-    regexp="^export SYMFONY__kernel__storage_dir"
+    line="export SYMFONY__kernel__cache_dir=\"/opt/symfony/cache\""
+    regexp="^export SYMFONY__kernel__cache_dir"
     state=present
     insertafter=EOF
     create=yes
 
-- name: Set Composer install path
+- name: Set kernel logs path
   become: no
   lineinfile:
     dest=/home/vagrant/.profile
-    line="export COMPOSER_VENDOR_DIR=\"${SYMFONY__kernel__storage_dir}/vendor\""
-    regexp="^export COMPOSER_VENDOR_DIR"
+    line="export SYMFONY__kernel__logs_dir=\"/opt/symfony/logs\""
+    regexp="^export SYMFONY__kernel__logs_dir"
     state=present
     insertafter=EOF
     create=yes
