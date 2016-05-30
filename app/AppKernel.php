@@ -43,32 +43,16 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return KERNEL_STORAGE_DIR.'/var/cache/'.$this->environment;
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
-        return KERNEL_STORAGE_DIR.'/var/logs';
+        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
-    }
-
-    /**
-     * This is a temporary solution for webplates/symfony-standard#30.
-     *
-     * {@inheritdoc}
-     */
-    protected function getKernelParameters()
-    {
-        $parameters = parent::getKernelParameters();
-
-        // Add the parameter if it's not available from the environment
-        // Might happen with the builtin server
-        $parameters['kernel.storage_dir'] = KERNEL_STORAGE_DIR;
-
-        return $parameters;
     }
 }
