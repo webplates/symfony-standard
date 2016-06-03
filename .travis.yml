@@ -23,9 +23,6 @@ matrix:
         - php: 5.5
           env: TEST_COMMAND="composer test-ci"
 
-before_install:
-    - travis_retry composer self-update
-
 install:
     - travis_retry composer install --prefer-dist --no-interaction
 
