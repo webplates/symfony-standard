@@ -5,6 +5,7 @@ sudo: false
 cache:
     directories:
         - $HOME/.composer/cache/files
+        - $HOME/.npm
 
 php:
     - 5.5
@@ -23,11 +24,20 @@ matrix:
         - php: 5.5
           env: TEST_COMMAND="composer test-ci"
 
+before_install:
+    - . $HOME/.nvm/nvm.sh
+    - nvm install 6
+    - nvm use 6
+    - npm install -g bower gulp-cli
+
 install:
     - travis_retry composer install --prefer-dist --no-interaction
+    - npm install
+    - bower install
 
 before_script:
     - php bin/console doctrine:schema:update --force
+    - gulp build
 
 script:
     - $TEST_COMMAND
