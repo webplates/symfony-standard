@@ -1,5 +1,0 @@
-#!/bin/bash
-
-if which composer > /dev/null; then composer install; fi
-if which npm > /dev/null; then npm install; fi
-if which bower > /dev/null; then bower install; fi
