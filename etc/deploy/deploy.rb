@@ -7,10 +7,6 @@ set :session_path, fetch(:var_path) + "/sessions"
 set :controllers_to_clear, ["app_*.php", "config.php"]
 
 
-# NPM config
-set :npm_flags, "--silent --no-progress"
-
-
 # Banner
 set :banner_path, fetch(:deploy_path) + "/banner.txt"
 set :banner_options, {
@@ -26,8 +22,6 @@ set :linked_dirs, [
     fetch(:web_path) + "/uploads"
 ]
 set :copy_files, [
-    "bower_components/",
-    "node_modules/",
     "vendor/"
 ]
 
@@ -35,10 +29,9 @@ set :copy_files, [
 # Deploy hooks
 namespace :deploy do
     after :starting, "composer:install_executable"
+    after :updated, "deploy:assets:upload"
     after :updated, "symfony:assets:install"
 end
-
-before "symfony:assets:install", "gulp"
 
 
 # System settings
