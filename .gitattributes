@@ -7,7 +7,6 @@
 /docker-compose.yml export-ignore
 /etc/deploy/        export-ignore
 /etc/docker/        export-ignore
-/etc/nginx/         export-ignore
 /etc/vagrant/       export-ignore
 /features/          export-ignore
 /Gemfile            export-ignore
