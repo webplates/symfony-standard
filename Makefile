@@ -5,9 +5,9 @@ CONSOLE?=bin/console
 CONSOLEOPTS=
 CONSOLECMD=$(PHPCMD) $(CONSOLE) $(CONSOLEOPTS)
 
-COMPOSER:=$(shell if which composer &> /dev/null; then which composer; fi)
-NPM:=$(shell if which npm &> /dev/null; then which npm; fi)
-BOWER:=$(shell if which bower &> /dev/null; then which bower; fi)
+COMPOSER:=$(shell if which composer > /dev/null 2>&1; then which composer; fi)
+NPM:=$(shell if which npm > /dev/null 2>&1; then which npm; fi)
+BOWER:=$(shell if which bower > /dev/null 2>&1; then which bower; fi)
 
 
 help:
