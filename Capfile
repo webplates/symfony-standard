@@ -16,15 +16,6 @@ require "capistrano/deploy"
 # Include Symfony specific tasks
 require "capistrano/symfony"
 
-# Include NPM tasks to install Node dependencies
-require "capistrano/npm"
-
-# Include Bower tasks to install frontend dependencies
-require "capistrano/bower"
-
-# Include Gulp tasks to build assets
-require "capistrano/gulp"
-
 # List stages
 require "capistrano/list_stages"
 
