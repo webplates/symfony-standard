@@ -1,6 +1,4 @@
 ---
-app:
-    storage_path: /opt/symfony
 server:
     timezone: UTC
     locale: en_US.UTF-8

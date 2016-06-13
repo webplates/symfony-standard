@@ -22,21 +22,3 @@
               regexp='date.timezone ='
               line='date.timezone = {{ server.timezone }}'
   notify: restart php-fpm
-
-- name: Set kernel cache path
-  lineinfile:
-    dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf
-    regexp="^env\[SYMFONY__kernel__cache_dir\]"
-    line="env[SYMFONY__kernel__cache_dir]=\"/opt/symfony/cache\""
-    state=present
-    insertafter=EOF
-  notify: restart php-fpm
-
-- name: Set kernel logs path
-  lineinfile:
-    dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf
-    regexp="^env\[SYMFONY__kernel__logs_dir\]"
-    line="env[SYMFONY__kernel__logs_dir]=\"/opt/symfony/logs\""
-    state=present
-    insertafter=EOF
-  notify: restart php-fpm

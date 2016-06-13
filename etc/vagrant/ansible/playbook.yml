@@ -14,6 +14,3 @@
     - composer
     - nodejs
     - app
-  environment:
-    SYMFONY__kernel__logs_dir: /opt/symfony/logs
-    SYMFONY__kernel__cache_dir: /opt/symfony/cache

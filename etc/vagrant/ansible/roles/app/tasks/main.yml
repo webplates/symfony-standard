@@ -1,25 +1,5 @@
 ---
 # application tasks to be customized and to run after the main provision
 
-- name: Set kernel cache path
-  become: no
-  lineinfile:
-    dest=/home/vagrant/.profile
-    line="export SYMFONY__kernel__cache_dir=\"/opt/symfony/cache\""
-    regexp="^export SYMFONY__kernel__cache_dir"
-    state=present
-    insertafter=EOF
-    create=yes
-
-- name: Set kernel logs path
-  become: no
-  lineinfile:
-    dest=/home/vagrant/.profile
-    line="export SYMFONY__kernel__logs_dir=\"/opt/symfony/logs\""
-    regexp="^export SYMFONY__kernel__logs_dir"
-    state=present
-    insertafter=EOF
-    create=yes
-
 - name: Create Symfony local directory
   file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
