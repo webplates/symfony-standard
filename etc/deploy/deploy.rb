@@ -10,7 +10,8 @@ set :controllers_to_clear, ["app_*.php", "config.php"]
 # Banner
 set :banner_path, fetch(:deploy_path) + "/banner.txt"
 set :banner_options, {
-    :pause => true
+    :pause => true,
+    :force => true
 }
 
 
