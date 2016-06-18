@@ -30,7 +30,7 @@ services:
 
     php:
         build: etc/docker/php-fpm
-        ports:
+        expose:
             - 9000
         volumes_from:
             - app
@@ -58,17 +58,15 @@ services:
             context: etc/docker/php-fpm
             args:
                USE_XDEBUG: "yes"
-        ports:
-            - 9000
-            - 9090
         volumes_from:
             - app
+        volumes:
+            - ./var/docker/xdebug:/var/log/xdebug
         links:
             - db
             - blackfire
         environment:
             HISTFILE: /var/www/var/docker/.bash_history
-            XDEBUG_CONFIG: idekey=PHPSTORM
             XDG_CONFIG_HOME: /var/www/var/docker/.config # Required for PsySH
             COMPOSER_HOME: /var/www/var/docker/composer
 
