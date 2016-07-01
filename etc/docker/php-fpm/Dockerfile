@@ -35,9 +35,8 @@ RUN set -ex \
 	&& if [ $USE_XDEBUG = "yes" ]; then \
         pecl install xdebug && docker-php-ext-enable xdebug; \
         echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-        echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-        echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/conf.d/xdebug.ini; \
-        echo "xdebug.remote_port=9090" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        echo "xdebug.remote_autostart=1" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+        echo "xdebug.remote_connect_back=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
 	fi
 
 RUN export VERSION=`php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;"` \
