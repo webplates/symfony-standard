@@ -1,4 +1,5 @@
 /.babelrc            export-ignore
+/.env.example        export-ignore
 /.editorconfig       export-ignore
 /.gitattributes      export-ignore
 /.gitignore          export-ignore

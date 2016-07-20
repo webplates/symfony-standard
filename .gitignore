@@ -1,9 +1,9 @@
 # General
 .DS_Store
 /.env*
+!.env.example
 /.idea/
 /build/
-/etc/**/*.env
 
 # Vagrant
 /.vagrant/

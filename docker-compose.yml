@@ -88,8 +88,11 @@ services:
     # integration page: https://blackfire.io/docs/integrations/docker
     blackfire:
         image: blackfire/blackfire
-        env_file:
-            - ./etc/docker/env/blackfire.env
+        environment:
+            BLACKFIRE_CLIENT_ID: ${BLACKFIRE_CLIENT_ID}
+            BLACKFIRE_CLIENT_TOKEN: ${BLACKFIRE_CLIENT_TOKEN}
+            BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
+            BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
 
     elasticsearch:
         image: elasticsearch
