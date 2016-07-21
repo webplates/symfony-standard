@@ -56,9 +56,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ],
-        "test": "vendor/bin/phpspec run && vendor/bin/phpunit && vendor/bin/behat",
-        "test-ci": "vendor/bin/phpspec run -c phpspec.ci.yml run && vendor/bin/phpunit --coverage-text --coverage-clover build/coverage.clover && vendor/bin/behat"
+        ]
     },
     "config": {
         "platform": {
