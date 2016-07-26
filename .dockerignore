@@ -1,0 +1,11 @@
+# General
+.git/
+
+# Symfony
+app/config/parameters.yml
+var/
+!var/SymfonyRequirements.php
+
+# Frontend
+bower_components/
+node_modules/
