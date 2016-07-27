@@ -47,7 +47,7 @@ script:
 after_success:
     - if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PHP_VERSION == 5.6 ]]; then
       docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      travis_retry composer install --prefer-dist --no-interaction --no-dev
+      travis_retry composer install --prefer-dist --no-interaction --no-dev;
       docker build -t webplates/symfony .;
       docker push webplates/symfony;
       fi
