@@ -9,7 +9,7 @@ COMPOSER:=$(shell if which composer > /dev/null 2>&1; then which composer; fi)
 COMPOSEROPTS=
 NPM:=$(shell if which npm > /dev/null 2>&1; then which npm; fi)
 BOWER:=$(shell if which bower > /dev/null 2>&1; then which bower; fi)
-
+GULPOPTS=
 
 help:
 	@echo 'Makefile for a Symfony application               '
@@ -42,7 +42,7 @@ setup:
 	$(CONSOLECMD) h:d:f:l --no-interaction
 
 frontend:
-	gulp build
+	gulp build $(GULPOPTS)
 
 test:
 ifeq ($(COVERAGE), true)

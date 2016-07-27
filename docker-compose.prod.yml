@@ -13,11 +13,12 @@ services:
             MYSQL_PASSWORD: symfony
 
     app:
-        image: webplates/symfony
+        build: .
         links:
             - db
         volumes:
-            - ./var/docker/prod/app:/var/www/var/logs
+            - ./var/docker/prod/app/logs:/var/www/var/logs
+            - ./var/docker/prod/app/public:/var/www/var/public
         environment:
             SYMFONY_ENV: prod
             SYMFONY__DATABASE_HOST: db

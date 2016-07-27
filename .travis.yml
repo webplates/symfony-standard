@@ -39,7 +39,7 @@ install:
 
 before_script:
     - php bin/console doctrine:schema:update --force
-    - make frontend
+    - make GULPOPTS="--env production" frontend
 
 script:
     - make test
