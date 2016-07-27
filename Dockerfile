@@ -37,7 +37,7 @@ COPY web/ web/
 RUN composer run-script post-install-cmd
 RUN chmod -R 777 var/cache/ var/logs/
 
-VOLUME ["/var/www/html"]
+VOLUME ["/var/www/html/web"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
