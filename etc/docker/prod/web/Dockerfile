@@ -11,4 +11,6 @@ RUN set -xe \
     && apk del --no-cache shadow \
     && head -n -1 /etc/apk/repositories | tee /etc/apk/repositories
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf.template
+
+CMD envsubst '$$FPM_HOST' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && cat /etc/nginx/conf.d/default.conf  && nginx -g 'daemon off;'
