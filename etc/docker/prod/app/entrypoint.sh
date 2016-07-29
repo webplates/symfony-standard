@@ -5,7 +5,7 @@ set -e
 bin/console cache:clear
 chmod -R 777 var/cache/ var/logs/
 rm -rf public/*
-cp web/* public/
+cp -r web/* public/
 
 case "$1" in
     "php-fpm")
