@@ -25,6 +25,9 @@ RUN bower --allow-root install
 
 ENV SYMFONY_ENV prod
 
+# Production PHP configuration
+COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
+
 COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-dev --no-interaction --quiet --no-autoloader --no-scripts
 
@@ -52,9 +55,6 @@ RUN set -xe \
         package.json \
         var/cache/* \
         var/logs/*
-
-# Production PHP configuration
-COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
 
 VOLUME ["/var/www/html/public", "/var/www/html/var/sessions"]
 
