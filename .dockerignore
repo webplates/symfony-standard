@@ -1,11 +1,36 @@
 # General
 .git/
+etc/
+!etc/gulp/
+!etc/docker/prod/
 
 # Symfony
 app/config/parameters.yml
 var/
 !var/SymfonyRequirements.php
+vendor/
+web/app_dev.php
+web/config.php
 
 # Frontend
 bower_components/
 node_modules/
+web/assets/
+web/bundles/
+
+# Favicons
+app/Resources/views/favicons.html.twig
+web/android-chrome-*.png
+web/apple-touch-*.png
+web/browserconfig.xml
+web/coast-*.png
+web/favicon.ico
+web/favicon-*.png
+web/firefox_app_*.png
+web/manifest.json
+web/manifest.webapp
+web/mstile-*.png
+web/open-graph.png
+web/twitter.png
+web/yandex-*.png
+web/yandex-browser-manifest.json
