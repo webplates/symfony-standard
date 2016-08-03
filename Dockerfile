@@ -45,6 +45,7 @@ RUN set -xe \
     && composer dump-autoload --optimize \
     && composer run-script post-install-cmd \
     && gulp --env production \
+    && bin/console assets:install \
     && bin/console cache:clear --no-warmup \
     && rm -rf bower_components/ \
         bower.json \
