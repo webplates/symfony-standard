@@ -55,7 +55,8 @@ RUN set -xe \
         npm-shrinkwrap.json \
         package.json \
         var/cache/* \
-        var/logs/*
+        var/logs/* \
+    && chmod -R 777 var/sessions/
 
 VOLUME ["/var/www/html/public", "/var/www/html/var/sessions"]
 

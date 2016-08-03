@@ -3,7 +3,7 @@
 set -e
 
 bin/console cache:clear
-chmod -R 777 var/cache/ var/logs/ var/sessions/
+chmod -R 777 var/cache/ var/logs/
 rm -rf public/*
 cp -r web/* public/
 
