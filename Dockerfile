@@ -45,6 +45,7 @@ RUN set -xe \
     && composer run-script post-install-cmd \
     && gulp --env production \
     && bin/console assets:install \
+    && mv web/ public/ \
     && bin/console cache:clear --no-warmup \
     && rm -rf bower_components/ \
         bower.json \
@@ -57,7 +58,7 @@ RUN set -xe \
         var/logs/* \
     && chmod -R 777 var/sessions/
 
-VOLUME ["/var/www/html/public", "/var/www/html/var/sessions"]
+VOLUME ["/var/www/html/web", "/var/www/html/var/sessions"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
