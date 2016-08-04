@@ -13,4 +13,6 @@ RUN set -xe \
 
 COPY default.conf /etc/nginx/conf.d/default.conf.template
 
-CMD envsubst '$$FPM_HOST' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && cat /etc/nginx/conf.d/default.conf  && nginx -g 'daemon off;'
+ENV FPM_HOST=app FPM_PORT=9000
+
+CMD envsubst '$$FPM_HOST $$FPM_PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
