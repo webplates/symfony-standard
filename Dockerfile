@@ -12,11 +12,9 @@ ENV BOWER_VERSION=1.7.9 GULP_VERSION=1.2.2 NPM_CONFIG_LOGLEVEL=warn
 ENV COMPOSER_VERSION=1.1.0 COMPOSER_ALLOW_SUPERUSER=1
 ENV SYMFONY_ENV prod
 
-# Production PHP configuration
-COPY etc/docker/prod/app/php.ini /usr/local/etc/php/php.ini
-
 RUN set -xe \
     && npm install --silent -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION \
+    && echo -e "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer global require --quiet "hirak/prestissimo:^0.3"
 
