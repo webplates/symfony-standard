@@ -17,9 +17,9 @@ services:
         links:
             - db
         volumes:
-            - ./var/docker/prod/app/logs:/var/www/html/var/logs
-            - ./var/docker/prod/app/sessions:/var/www/html/var/sessions
-            - ./var/docker/prod/app/web:/var/www/html/web
+            - ./var/docker/prod/app/logs:/app/var/logs
+            - ./var/docker/prod/app/sessions:/app/var/sessions
+            - ./var/docker/prod/app/web:/app/web
         environment:
             SYMFONY_ENV: prod
             SYMFONY__DATABASE_HOST: db

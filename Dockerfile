@@ -12,6 +12,8 @@ ENV BOWER_VERSION=1.7.9 GULP_VERSION=1.2.2 NPM_CONFIG_LOGLEVEL=warn
 ENV COMPOSER_VERSION=1.1.0 COMPOSER_ALLOW_SUPERUSER=1
 ENV SYMFONY_ENV prod
 
+WORKDIR /app
+
 RUN set -xe \
     && npm install --silent -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION \
     && echo "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini \
@@ -56,7 +58,7 @@ RUN set -xe \
         var/logs/* \
     && chmod -R 777 var/sessions/
 
-VOLUME ["/var/www/html/web", "/var/www/html/var/sessions"]
+VOLUME ["/app/web", "/app/var/sessions"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
