@@ -28,7 +28,6 @@ RUN set -xe \
     && gulp --env production \
     && bin/console assets:install \
     && mv web/ public/ \
-    && bin/console cache:clear --no-warmup \
     && rm -rf .babelrc \
         bower_components/ \
         bower.json \
@@ -37,7 +36,6 @@ RUN set -xe \
         node_modules/ \
         npm-shrinkwrap.json \
         package.json \
-        var/cache/* \
         var/logs/* \
     && touch var/logs/${SYMFONY_ENV}.log \
     && mkdir -p var/sessions/ var/uploads/ \
