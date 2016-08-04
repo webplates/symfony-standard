@@ -1,0 +1,198 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: web
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: app
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: app
+spec:
+  triggers:
+    -
+      type: GitHub
+      github:
+        secret: SECRET
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/webplates/symfony-standard'
+      ref: master
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'app:latest'
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: web
+spec:
+  triggers:
+    -
+      type: GitHub
+      github:
+        secret: SECRET
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/webplates/symfony-standard'
+      ref: master
+    contextDir: etc/docker/prod/web
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'web:latest'
+---
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: app
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      pre:
+        failurePolicy: Retry
+        execNewPod:
+          command:
+            - bin/console
+            - 'doctrine:migrations:migrate'
+          containerName: app
+  triggers:
+    -
+      type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - app
+        from:
+          kind: ImageStreamTag
+          name: 'app:latest'
+    -
+      type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - web
+        from:
+          kind: ImageStreamTag
+          name: 'web:latest'
+    -
+      type: ConfigChange
+  replicas: 1
+  selector:
+    name: app
+  template:
+    metadata:
+      labels:
+        name: app
+    spec:
+      volumes:
+        -
+          name: web
+          emptyDir: {  }
+      containers:
+        -
+          name: app
+          image: 'symfony/app'
+          ports:
+            -
+              containerPort: 9000
+              protocol: TCP
+          env:
+            -
+              name: SYMFONY__DATABASE_HOST
+              value: mysql
+            -
+              name: SYMFONY__DATABASE_USER
+              value: symfony
+            -
+              name: SYMFONY__DATABASE_PASSWORD
+              value: symfony
+          volumeMounts:
+            -
+              name: web
+              mountPath: /app/web
+          livenessProbe:
+            tcpSocket:
+              port: 9000
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 9000
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+        -
+          name: web
+          image: 'symfony/web'
+          ports:
+            -
+              containerPort: 80
+              protocol: TCP
+          env:
+            -
+              name: FPM_HOST
+              value: localhost
+          volumeMounts:
+            -
+              name: web
+              mountPath: /app/web
+          livenessProbe:
+            httpGet:
+              path: /__health
+              port: 80
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  ports:
+    -
+      name: app
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    name: app
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: app
+spec:
+  to:
+    kind: Service
+    name: app
+  port:
+    targetPort: app
