@@ -34,5 +34,3 @@ services:
             - ./var/docker/prod/nginx:/var/log/nginx
         volumes_from:
             - app
-        environment:
-            FPM_HOST: app
