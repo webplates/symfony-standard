@@ -4,7 +4,7 @@ services:
     data:
         image: debian:jessie
         volumes:
-            - .:/var/www
+            - .:/app
         tty: true
 
     frontend:
@@ -12,8 +12,8 @@ services:
         volumes_from:
             - data
         environment:
-            NPM_CONFIG_PREFIX: /var/www/var/docker/dev/npm/prefix
-            NPM_CONFIG_CACHE: /var/www/var/docker/dev/npm/cache
+            NPM_CONFIG_PREFIX: /app/var/docker/dev/npm/prefix
+            NPM_CONFIG_CACHE: /app/var/docker/dev/npm/cache
 
     db:
         image: mysql:latest
@@ -34,9 +34,9 @@ services:
             - db
             - blackfire
         environment:
-            HISTFILE: /var/www/var/docker/dev/.bash_history
-            XDG_CONFIG_HOME: /var/www/var/docker/dev/.config # Required for PsySH
-            COMPOSER_HOME: /var/www/var/docker/dev/composer
+            HISTFILE: /app/var/docker/dev/.bash_history
+            XDG_CONFIG_HOME: /app/var/docker/dev/.config # Required for PsySH
+            COMPOSER_HOME: /app/var/docker/dev/composer
 
     web:
         build: etc/docker/dev/web
@@ -60,9 +60,9 @@ services:
             - db
             - blackfire
         environment:
-            HISTFILE: /var/www/var/docker/dev/.bash_history
-            XDG_CONFIG_HOME: /var/www/var/docker/dev/.config # Required for PsySH
-            COMPOSER_HOME: /var/www/var/docker/dev/composer
+            HISTFILE: /app/var/docker/dev/.bash_history
+            XDG_CONFIG_HOME: /app/var/docker/dev/.config # Required for PsySH
+            COMPOSER_HOME: /app/var/docker/dev/composer
 
     web_debug:
         build: etc/docker/dev/web
