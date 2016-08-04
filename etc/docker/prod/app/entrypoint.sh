@@ -11,8 +11,10 @@ case "$1" in
         exec php-fpm ;;
     "")
         exec php-fpm ;;
-    "migrate")
-        exec bin/console doctrine:migrations:migrate ;;
+    "console")
+        exec "bin/$@" ;;
     *)
-        exec "$@" ;;
+        echo "Unallowed command"
+        exit 1
+        ;;
 esac
