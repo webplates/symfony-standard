@@ -14,7 +14,7 @@ ENV SYMFONY_ENV prod
 
 RUN set -xe \
     && npm install --silent -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION \
-    && echo -e "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini \
+    && echo "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer global require --quiet "hirak/prestissimo:^0.3"
 
