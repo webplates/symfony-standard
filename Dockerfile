@@ -56,9 +56,10 @@ RUN set -xe \
         package.json \
         var/cache/* \
         var/logs/* \
-    && chmod -R 777 var/sessions/
+    && mkdir -p var/sessions/ var/uploads/ \
+    && chmod -R 777 var/sessions/ var/uploads/
 
-VOLUME ["/app/web", "/app/var/sessions"]
+VOLUME ["/app/web", "/app/var/sessions", "/app/var/uploads"]
 
 COPY etc/docker/prod/app/entrypoint.sh /docker-entrypoint.sh
 
