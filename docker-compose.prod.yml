@@ -26,7 +26,7 @@ services:
             SYMFONY__DATABASE_HOST: db
 
     web:
-        build: etc/docker/prod/web
+        image: webplates/symfony-nginx
         ports:
             - 80
         links:
