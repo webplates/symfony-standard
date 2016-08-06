@@ -30,14 +30,7 @@ RUN bower --allow-root install
 COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-dev --no-interaction --quiet --no-autoloader --no-scripts
 
-COPY LICENSE .
-COPY bin/ bin/
-COPY etc/ etc/
-COPY app/ app/
-COPY src/ src/
-COPY var/ var/
-COPY web/ web/
-COPY .babelrc gulpfile.babel.js ./
+COPY . .
 
 # Build and cleanup
 RUN set -xe \
@@ -47,7 +40,8 @@ RUN set -xe \
     && bin/console assets:install \
     && mv web/ public/ \
     && bin/console cache:clear --no-warmup \
-    && rm -rf bower_components/ \
+    && rm -rf .babelrc \
+        bower_components/ \
         bower.json \
         etc/ \
         gulpfile.babel.js \

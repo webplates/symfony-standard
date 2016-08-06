@@ -1,36 +1,31 @@
+*
+
 # General
-.git/
-etc/
-!etc/gulp/
-!etc/docker/prod/
+!LICENSE
+!README.md
+
+# Docker
+!etc/docker/prod/app/entrypoint.sh
 
 # Symfony
+!app/
 app/config/parameters.yml
-var/
+app/config/config_dev.yml
+app/config/config_test.yml
+app/config/extras_test.yml
+app/config/routing_dev.yml
+!bin/
+!composer.json
+!composer.lock
+!src/
 !var/SymfonyRequirements.php
-vendor/
-web/app_dev.php
-web/config.php
+!web/app.php
+!web/robots.txt
 
 # Frontend
-bower_components/
-node_modules/
-web/assets/
-web/bundles/
-
-# Favicons
-app/Resources/views/favicons.html.twig
-web/android-chrome-*.png
-web/apple-touch-*.png
-web/browserconfig.xml
-web/coast-*.png
-web/favicon.ico
-web/favicon-*.png
-web/firefox_app_*.png
-web/manifest.json
-web/manifest.webapp
-web/mstile-*.png
-web/open-graph.png
-web/twitter.png
-web/yandex-*.png
-web/yandex-browser-manifest.json
+!.babelrc
+!bower.json
+!etc/gulp/
+!gulpfile.babel.js
+!npm-shrinkwrap.json
+!package.json
