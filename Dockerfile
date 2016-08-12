@@ -7,20 +7,20 @@ ENV BOWER_VERSION=1.7.9 GULP_VERSION=1.2.2 NPM_CONFIG_LOGLEVEL=warn
 RUN set -xe \
     && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get install -qqy nodejs build-essential \
-    && npm install --silent -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION
+    && npm install -g bower@$BOWER_VERSION gulp-cli@$GULP_VERSION --silent
 
 # Install frontend dependencies
 COPY package.json npm-shrinkwrap.json ./
 RUN npm install --silent
 
 COPY bower.json .
-RUN bower --allow-root install
+RUN bower install --allow-root --silent
 
 # Replace this with a proper PHP ini config
 RUN echo "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini
 
 COPY composer.json composer.lock ./
-RUN composer install --prefer-dist --no-dev --no-interaction --quiet --no-autoloader --no-scripts
+RUN composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-interaction --quiet
 
 COPY . .
 
