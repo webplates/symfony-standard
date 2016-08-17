@@ -93,6 +93,8 @@ test:
         - mkdir -p ~/.ssh
         - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
         - bundle
+    dependencies:
+        - frontend
 
 deploy:dev:
     <<: *deploy_template
