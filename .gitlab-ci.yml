@@ -1,0 +1,130 @@
+variables:
+    SYMFONY_DEPRECATIONS_HELPER: weak
+    SYMFONY_ENV: test
+
+stages:
+    - dep
+    - build
+    - deploy
+
+npm:
+    stage: dep
+    image: node:6.3.1
+    script:
+        - npm install --silent
+    cache:
+        paths:
+            - node_modules/
+    artifacts:
+        paths:
+            - node_modules/
+
+bower:
+    stage: dep
+    image: node:6.3.1
+    variables:
+        BOWER_VERSION: 1.7.9
+    script:
+        - npm install -g bower@$BOWER_VERSION --silent
+        - bower install --allow-root --silent
+    cache:
+        paths:
+            - bower_components/
+    artifacts:
+        paths:
+            - bower_components/
+
+composer:
+    stage: dep
+    image: webplates/symfony-php:7.0
+    script:
+        - composer install --prefer-dist --no-autoloader --no-scripts --no-interaction --quiet
+    cache:
+        paths:
+            - vendor/
+    artifacts:
+        paths:
+            - vendor/
+
+frontend:
+    stage: build
+    image: node:6.3.1
+    variables:
+        GULP_VERSION: 1.2.2
+    script:
+        - npm install -g gulp-cli@$GULP_VERSION --silent
+        - gulp --env production
+    dependencies:
+        - npm
+        - bower
+    artifacts:
+        paths:
+            - app/Resources/views/favicons.html.twig
+            - web/assets
+            - web/*.png
+            - web/browserconfig.xml
+            - web/favicon.ico
+            - web/manifest.webapp
+            - web/*.json
+
+test:
+    stage: build
+    image: webplates/symfony-php:7.0
+    script:
+        - "curl -H \"Accept: text/plain\" https://security.sensiolabs.org/check_lock -F lock=@composer.lock"
+        - composer dump-autoload
+        - composer run-script post-install-cmd
+        - php bin/console lint:yaml -v --ansi app
+        - php bin/console doctrine:schema:update --force
+        - php bin/console h:d:f:l --no-interaction
+        - make test
+    dependencies:
+        - composer
+    cache:
+        paths:
+            - var/cache/test/test.db
+
+.deploy:template: &deploy_template
+    stage: deploy
+    image: ruby:2.3
+    before_script:
+        - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+        - bundle
+
+deploy:dev:
+    <<: *deploy_template
+    environment: dev
+    script:
+        - ssh-add <(echo "$DEV_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap dev deploy
+    only:
+        - master
+
+deploy:staging:
+    <<: *deploy_template
+    variables:
+        BRANCH: "$CI_BUILD_TAG"
+    environment: staging
+    script:
+        - ssh-add <(echo "$STAGING_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap staging deploy
+    only:
+        - /^v\d+\.\d+\.\d+-(rc|dev).*$/
+    except:
+        - branches
+
+deploy:live:
+    <<: *deploy_template
+    environment: production
+    variables:
+        BRANCH: "$CI_BUILD_TAG"
+    script:
+        - ssh-add <(echo "$PROD_DEPLOY_PRIVATE_KEY")
+        - bundle exec cap production deploy
+    only:
+        - /^v\d+\.\d+\.\d+(-(hotfix).*)?$/
+    except:
+        - branches
