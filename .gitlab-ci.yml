@@ -98,6 +98,8 @@ test:
 
 deploy:dev:
     <<: *deploy_template
+    variables:
+        BRANCH: "$CI_BUILD_REF_NAME"
     environment: dev
     script:
         - ssh-add <(echo "$DEV_DEPLOY_PRIVATE_KEY")
