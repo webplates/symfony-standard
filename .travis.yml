@@ -31,7 +31,7 @@ install:
     - make COMPOSEROPTS="--prefer-dist --no-interaction" deps
 
 before_script:
-    - make TEST=true setup
+    - make setup
     - make GULPOPTS="--env production" frontend
 
 script:

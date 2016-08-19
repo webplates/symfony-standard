@@ -1,4 +1,0 @@
-AppBundle\Entity\User:
-    admin:
-        username: admin
-        name: Administrator

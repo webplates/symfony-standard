@@ -12,18 +12,18 @@ BOWER:=$(shell if which bower > /dev/null 2>&1; then which bower; fi)
 GULPOPTS=
 
 help:
-	@echo 'Makefile for a Symfony application                                      '
-	@echo '                                                                        '
-	@echo 'Usage:                                                                  '
-	@echo '    make clear     clear the cache                                      '
-	@echo '    make deps      install project dependencies                         '
-	@echo '    make setup     setup project for development                        '
-	@echo '                   set TEST=true update schema instead of migrations    '
-	@echo '                   Note: SYMFONY_ENV=test env var SHOULD BE set manually'
-	@echo '    make frontend  execute frontend build                               '
-	@echo '    make test      execute test suite                                   '
-	@echo '                   set COVERAGE=true to run coverage                    '
-	@echo '                                                                        '
+	@echo 'Makefile for a Symfony application                  '
+	@echo '                                                    '
+	@echo 'Usage:                                              '
+	@echo '    make clear     clear the cache                  '
+	@echo '    make deps      install project dependencies     '
+	@echo '    make setup     setup project for development    '
+	@echo '                   set SCHEMA=true to update schema '
+	@echo '                   set FIXTURES=true to run fixtures'
+	@echo '    make frontend  execute frontend build           '
+	@echo '    make test      execute test suite               '
+	@echo '                   set COVERAGE=true to run coverage'
+	@echo '                                                    '
 
 clear:
 	$(CONSOLECMD) cache:clear
@@ -39,14 +39,14 @@ ifdef BOWER
 	$(BOWER) install
 endif
 
-setup:
-	$(CONSOLECMD) cache:clear
-ifeq ($(TEST), true)
+setup: clear
+	$(CONSOLECMD) doctrine:migrations:migrate --allow-no-migration --no-interaction
+ifeq ($(SCHEMA), true)
 	$(CONSOLECMD) doctrine:schema:update --force --no-interaction
-else
-	$(CONSOLECMD) doctrine:migrations:migrate --no-interaction
 endif
+ifeq ($(FIXTURES), true)
 	$(CONSOLECMD) h:d:f:l --no-interaction
+endif
 
 frontend:
 	gulp build $(GULPOPTS)
