@@ -9,7 +9,7 @@ mariadb:
     user: symfony
     password: symfony
 php:
-    version: 5.6
+    version: 7.0
     packages: [intl, mcrypt, curl, gd, mysql, mbstring, xml, zip]
     pecl_packages: []
 blackfire:

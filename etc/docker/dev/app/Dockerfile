@@ -1,4 +1,4 @@
-FROM webplates/symfony-php-dev:5.6-fpm
+FROM webplates/symfony-php-dev:7.0-fpm
 
 ARG USE_XDEBUG=no
 

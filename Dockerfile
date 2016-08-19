@@ -1,4 +1,4 @@
-FROM webplates/symfony-php:5.6-fpm
+FROM webplates/symfony-php:7.0-fpm
 # node sass does not support Alpine at the moment
 # https://github.com/sass/node-sass/issues/1589
 
