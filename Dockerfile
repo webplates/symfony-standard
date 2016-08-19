@@ -16,9 +16,6 @@ RUN npm install --silent
 COPY bower.json .
 RUN bower install --allow-root --silent
 
-# Replace this with a proper PHP ini config
-RUN echo "[PHP]\n\ndate.timezone = UTC" > /usr/local/etc/php/php.ini
-
 COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-interaction --quiet
 
