@@ -73,9 +73,7 @@ test:
         - "curl -H \"Accept: text/plain\" https://security.sensiolabs.org/check_lock -F lock=@composer.lock"
         - composer dump-autoload
         - composer run-script post-install-cmd
-        - php bin/console lint:yaml -v --ansi app
-        - php bin/console doctrine:schema:update --force
-        - php bin/console h:d:f:l --no-interaction
+        - make TEST=true setup
         - make test
     dependencies:
         - composer

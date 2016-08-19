@@ -31,7 +31,7 @@ install:
     - make COMPOSEROPTS="--prefer-dist --no-interaction" deps
 
 before_script:
-    - php bin/console doctrine:schema:update --force
+    - make TEST=true setup
     - make GULPOPTS="--env production" frontend
 
 script:
