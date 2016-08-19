@@ -5,7 +5,7 @@
 !README.md
 
 # Docker
-!etc/docker/prod/app/entrypoint.sh
+!etc/docker/prod/app/
 
 # Symfony
 !app/
