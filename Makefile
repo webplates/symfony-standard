@@ -54,7 +54,7 @@ frontend:
 test:
 	$(CONSOLECMD) lint:yaml -v --ansi app
 ifeq ($(COVERAGE), true)
-	vendor/bin/phpspec run -c phpspec.ci.yml run
+	vendor/bin/phpspec run -c phpspec.ci.yml
 	vendor/bin/phpunit --coverage-text --coverage-clover build/coverage.clover
 else
 	vendor/bin/phpspec run
