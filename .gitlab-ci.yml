@@ -1,7 +1,3 @@
-variables:
-    SYMFONY_DEPRECATIONS_HELPER: weak
-    SYMFONY_ENV: test
-
 stages:
     - dep
     - build
@@ -70,6 +66,9 @@ frontend:
 test:
     stage: build
     image: webplates/symfony-php:7.0
+    variables:
+        SYMFONY_DEPRECATIONS_HELPER: weak
+        SYMFONY_ENV: test
     script:
         - "curl -H \"Accept: text/plain\" https://security.sensiolabs.org/check_lock -F lock=@composer.lock"
         - composer dump-autoload
