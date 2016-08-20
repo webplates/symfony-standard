@@ -73,7 +73,7 @@ test:
         - "curl -H \"Accept: text/plain\" https://security.sensiolabs.org/check_lock -F lock=@composer.lock"
         - composer dump-autoload
         - composer run-script post-install-cmd
-        - make setup
+        - make SCHEMA=true setup
         - make test
     dependencies:
         - composer
