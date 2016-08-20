@@ -15,7 +15,7 @@ This includes, but is not limited to the following:
  - Development tools
  - Best practices
 
-**Important:** This is not a fork. Although this version is created based on the original one, it does note
+**Important:** This is not a fork. Although this version is created based on the original one, it does not
 have any connection to it. From time to time the content might be updated in order to adhere the latest-greatest
 practices.
 
