@@ -40,9 +40,10 @@ ifdef BOWER
 endif
 
 setup: clear
-	$(CONSOLECMD) doctrine:migrations:migrate --allow-no-migration --no-interaction
 ifeq ($(SCHEMA), true)
 	$(CONSOLECMD) doctrine:schema:update --force --no-interaction
+else
+	$(CONSOLECMD) doctrine:migrations:migrate --allow-no-migration --no-interaction
 endif
 ifeq ($(FIXTURES), true)
 	$(CONSOLECMD) h:d:f:l --no-interaction
