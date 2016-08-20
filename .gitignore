@@ -13,6 +13,7 @@
 
 # Symfony
 /app/config/parameters.yml
+/app/config/parameters.test.yml
 /phpunit.xml
 /var/*
 !/var/cache

@@ -1,6 +1,7 @@
 imports:
     - { resource: config_dev.yml }
     - { resource: extras_test.yml }
+    - { resource: parameters.test.yml, ignore_errors: true }
 
 framework:
     test: ~
