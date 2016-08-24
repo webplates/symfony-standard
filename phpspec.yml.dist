@@ -1,5 +1,4 @@
 suites:
     app_suite:
         namespace: AppBundle
-        psr4_prefix: AppBundle
 formatter.name: pretty
