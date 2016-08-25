@@ -17,8 +17,6 @@ services:
         links:
             - db
         volumes:
-            - ./var/docker/prod/app/logs:/app/var/logs
-            - ./var/docker/prod/app/sessions:/app/var/sessions
             - ./var/docker/prod/app/uploads:/app/var/uploads
             - ./var/docker/prod/app/web:/app/web
         environment:
@@ -32,6 +30,5 @@ services:
         links:
             - app
         volumes:
-            - ./var/docker/prod/nginx:/var/log/nginx
             - ./var/docker/prod/app/uploads:/app/var/uploads
             - ./var/docker/prod/app/web:/app/web
