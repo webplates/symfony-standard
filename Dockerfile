@@ -39,7 +39,6 @@ RUN set -xe \
         package.json \
         var/cache/* \
         var/logs/* \
-    && touch var/logs/${SYMFONY_ENV}.log \
     && mkdir -p var/sessions/ var/uploads/ \
     && chown -R www-data. var/cache/ var/logs/ var/sessions/ var/uploads/
 
