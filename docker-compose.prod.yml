@@ -2,15 +2,11 @@ version: '2'
 
 services:
     db:
-        image: mysql:latest
+        extends:
+            file: etc/docker/common/db/docker-compose.yml
+            service: db
         volumes:
             - ./var/docker/prod/mysql:/var/lib/mysql
-        environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: symfony
-            MYSQL_PASSWORD: symfony
 
     app:
         build: .

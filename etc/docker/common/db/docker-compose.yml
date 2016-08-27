@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    db:
+        image: mysql:latest
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: symfony
+            MYSQL_PASSWORD: symfony

@@ -16,15 +16,11 @@ services:
             NPM_CONFIG_CACHE: /app/var/docker/dev/npm/cache
 
     db:
-        image: mysql:latest
+        extends:
+            file: etc/docker/common/db/docker-compose.yml
+            service: db
         volumes:
             - ./var/docker/dev/mysql:/var/lib/mysql
-        environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-            MYSQL_ROOT_PASSWORD: ''
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: symfony
-            MYSQL_PASSWORD: symfony
 
     app:
         build: etc/docker/dev/app
