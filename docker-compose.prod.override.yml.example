@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+    app:
+        logging:
+            driver: gelf
+            options:
+                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-tag: symfony
+
+    web:
+        logging:
+            driver: gelf
+            options:
+                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-tag: nginx

@@ -83,27 +83,3 @@ services:
             BLACKFIRE_CLIENT_TOKEN: ${BLACKFIRE_CLIENT_TOKEN}
             BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
             BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
-
-    elasticsearch:
-        image: elasticsearch
-        command: elasticsearch -Des.network.host=0.0.0.0
-        expose:
-            - 9200
-
-    kibana:
-        image: kibana
-        ports:
-            - 5601
-        environment:
-            - ELASTICSEARCH_URL=http://elasticsearch:9200
-        links:
-            - elasticsearch
-
-    logstash:
-        build: etc/docker/dev/logstash
-        command: logstash -f /etc/logstash/logstash.conf
-        links:
-            - elasticsearch
-        volumes_from:
-            - data
-            - web

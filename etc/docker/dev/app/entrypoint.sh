@@ -19,11 +19,11 @@ case "$1" in
     "shell")
         gosu ${CUSER} "/bin/bash" ;;
     "console")
-        gosu ${CUSER} php -d memory_limit=-1 /var/www/bin/console "$@" ;;
-    "php-fpm")
-        exec env XDEBUG_CONFIG="remote_host=$DOCKERHOST" php-fpm ;;
-    "")
-        exec env XDEBUG_CONFIG="remote_host=$DOCKERHOST" php-fpm ;;
+        gosu ${CUSER} php -d memory_limit=-1 /app/bin/$@ ;;
+    ""|"php-fpm")
+        tail --pid $$ -n0 -F var/logs/* &
+        exec env XDEBUG_CONFIG="remote_host=$DOCKERHOST" php-fpm
+        ;;
     *)
         gosu ${CUSER} "$@" ;;
 esac
