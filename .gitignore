@@ -2,8 +2,6 @@
 .DS_Store
 /*.override.yml
 !*.override.yml.example
-/.env*
-!.env.example
 /.idea/
 /build/
 

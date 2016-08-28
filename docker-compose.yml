@@ -72,14 +72,9 @@ services:
             - ./var/docker/dev/nginx:/var/log/nginx
 
     # Set your blackfire IDs and tokens as environment variables
-    # on your system before building the containers.
+    # in docker-compose.override.yml before building the containers.
     # You can find your IDs and tokens in your account profile
     # https://blackfire.io/account or on the blackfire docker
     # integration page: https://blackfire.io/docs/integrations/docker
     blackfire:
         image: blackfire/blackfire
-        environment:
-            BLACKFIRE_CLIENT_ID: ${BLACKFIRE_CLIENT_ID}
-            BLACKFIRE_CLIENT_TOKEN: ${BLACKFIRE_CLIENT_TOKEN}
-            BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
-            BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
