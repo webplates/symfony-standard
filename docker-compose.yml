@@ -42,8 +42,6 @@ services:
             - app
         volumes_from:
             - data
-        volumes:
-            - ./var/docker/dev/nginx:/var/log/nginx
 
     app_debug:
         build:
@@ -68,8 +66,6 @@ services:
             - app_debug:app
         volumes_from:
             - data
-        volumes:
-            - ./var/docker/dev/nginx:/var/log/nginx
 
     # Set your blackfire IDs and tokens as environment variables
     # in docker-compose.override.yml before building the containers.
