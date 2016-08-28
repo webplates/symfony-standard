@@ -81,6 +81,26 @@ test:
         paths:
             - var/cache/test/test.db
 
+docker:build:
+    stage: build
+    image: docker
+    script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - docker build --pull -t $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME .
+        - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
+    dependencies: []
+
+docker:deploy:
+    stage: deploy
+    image: docker
+    script:
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - docker tag $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME $CI_REGISTRY_IMAGE:latest
+        - docker push $CI_REGISTRY_IMAGE:latest
+    dependencies: []
+    only:
+        - master
+
 .deploy:template: &deploy_template
     stage: deploy
     image: ruby:2.3
