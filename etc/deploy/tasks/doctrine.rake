@@ -26,7 +26,7 @@ namespace :doctrine do
         desc "Execute doctrine migrations"
         task :migrate do
             on roles(:db) do
-                symfony_console "doctrine:migrations:migrate", "--no-interaction"
+                symfony_console "doctrine:migrations:migrate", "--allow-no-migration --no-interaction"
             end
         end
     end
