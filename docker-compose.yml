@@ -2,10 +2,10 @@ version: '2'
 
 services:
     data:
-        image: debian:jessie
+        image: alpine
+        command: /bin/true
         volumes:
             - .:/app
-        tty: true
 
     frontend:
         build: etc/docker/dev/frontend
@@ -22,7 +22,7 @@ services:
         volumes:
             - ./var/docker/dev/mysql:/var/lib/mysql
 
-    app:
+    app: &app
         build: etc/docker/dev/app
         volumes_from:
             - data
@@ -32,7 +32,7 @@ services:
         environment:
             COMPOSER_HOME: /app/var/docker/dev/composer
 
-    web:
+    web: &web
         build: etc/docker/dev/web
         ports:
             - 80
@@ -42,26 +42,16 @@ services:
             - data
 
     app_debug:
+        <<: *app
         build:
             context: etc/docker/dev/app
             args:
                USE_XDEBUG: "yes"
-        volumes_from:
-            - data
-        links:
-            - db
-            - blackfire
-        environment:
-            COMPOSER_HOME: /app/var/docker/dev/composer
 
     web_debug:
-        build: etc/docker/dev/web
-        ports:
-            - 80
+        <<: *web
         links:
             - app_debug:app
-        volumes_from:
-            - data
 
     # Set your blackfire IDs and tokens as environment variables
     # in docker-compose.override.yml before building the containers.
