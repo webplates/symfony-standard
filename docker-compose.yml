@@ -30,8 +30,6 @@ services:
             - db
             - blackfire
         environment:
-            HISTFILE: /app/var/docker/dev/.bash_history
-            XDG_CONFIG_HOME: /app/var/docker/dev/.config # Required for PsySH
             COMPOSER_HOME: /app/var/docker/dev/composer
 
     web:
@@ -54,8 +52,6 @@ services:
             - db
             - blackfire
         environment:
-            HISTFILE: /app/var/docker/dev/.bash_history
-            XDG_CONFIG_HOME: /app/var/docker/dev/.config # Required for PsySH
             COMPOSER_HOME: /app/var/docker/dev/composer
 
     web_debug:
