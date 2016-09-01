@@ -5,6 +5,7 @@ default:
             contexts:
                 - AppBundle\Features\Context\FeatureContext
                 - AppBundle\Features\Context\DatabaseAwareContext
+                - Behat\MinkExtension\Context\MinkContext
             bundle: AppBundle
     extensions:
         Behat\Symfony2Extension: ~
