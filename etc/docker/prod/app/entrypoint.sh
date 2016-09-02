@@ -2,7 +2,7 @@
 
 set -e
 
-bin/console cache:clear
+bin/compile
 chown -R www-data. var/cache/
 cp -r public/* web/
 

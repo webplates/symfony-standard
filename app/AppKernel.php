@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -67,5 +68,28 @@ class AppKernel extends Kernel
         $loader->load(function(\Symfony\Component\DependencyInjection\Container $container) {
             $container->getParameterBag()->add($this->getEnvParameters());
         });
+    }
+
+    /**
+     * Recompiles the container without warming up the whole cache.
+     *
+     * Can be called upon docker container start to inject custom parameters.
+     */
+    public function compile()
+    {
+        // Load class cache
+        if ($this->loadClassCache) {
+            $this->doLoadClassCache($this->loadClassCache[0], $this->loadClassCache[1]);
+        }
+
+        // Initialize bundles to be able to parse configurations
+        $this->initializeBundles();
+
+        $class = $this->getContainerClass();
+        $cache = new ConfigCache($this->getCacheDir().'/'.$class.'.php', $this->debug);
+
+        $container = $this->buildContainer();
+        $container->compile();
+        $this->dumpContainer($cache, $container, $class, $this->getContainerBaseClass());
     }
 }
