@@ -68,4 +68,14 @@ class AppKernel extends Kernel
             $container->getParameterBag()->add($this->getEnvParameters());
         });
     }
+
+    protected function getKernelParameters()
+    {
+        return array_merge(
+            parent::getKernelParameters(),
+            [
+                'kernel.var_dir' => dirname(__DIR__).'/var'
+            ]
+        );
+    }
 }
