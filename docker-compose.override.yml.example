@@ -2,6 +2,8 @@ version: '2'
 
 services:
     app:
+        volumes:
+            - $HOME/.composer/cache:/var/www/.composer/cache
         logging: &app_logging
             driver: gelf
             options:

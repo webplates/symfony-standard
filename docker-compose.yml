@@ -29,8 +29,6 @@ services:
         links:
             - db
             - blackfire
-        environment:
-            COMPOSER_HOME: /app/var/docker/dev/composer
 
     web: &web
         build: etc/docker/dev/web
