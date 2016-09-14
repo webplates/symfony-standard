@@ -10,7 +10,7 @@ RUN set -ex \
         echo "xdebug.remote_connect_back=off" >> /usr/local/etc/php/conf.d/xdebug.ini; \
     fi
 
-COPY php.ini /usr/local/etc/php/php.ini
+COPY php.ini /usr/local/etc/php/conf.d/custom.ini
 COPY entrypoint.sh /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
