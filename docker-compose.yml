@@ -11,9 +11,6 @@ services:
         build: etc/docker/dev/frontend
         volumes_from:
             - data
-        environment:
-            NPM_CONFIG_PREFIX: /app/var/docker/dev/npm/prefix
-            NPM_CONFIG_CACHE: /app/var/docker/dev/npm/cache
 
     db:
         extends:
