@@ -5,13 +5,16 @@ services:
         volumes:
             - $HOME/.npm:/var/www/.npm
     app:
-        volumes:
-            - $HOME/.composer/cache:/var/www/.composer/cache
+        environment:
+            SYMFONY__MAILER_HOST: $MAILER_ADDRESS
+            SYMFONY__MAILER_PORT: $MAILER_PORT
         logging: &app_logging
             driver: gelf
             options:
-                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
                 tag: symfony
+        volumes:
+            - $HOME/.composer/cache:/var/www/.composer/cache
 
     app_debug:
         logging: *app_logging
@@ -20,7 +23,7 @@ services:
         logging: &web_logging
             driver: gelf
             options:
-                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
                 tag: nginx
 
     web_debug:

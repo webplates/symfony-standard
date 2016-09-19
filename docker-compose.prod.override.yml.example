@@ -5,12 +5,12 @@ services:
         logging:
             driver: gelf
             options:
-                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
                 tag: symfony
 
     web:
         logging:
             driver: gelf
             options:
-                gelf-address: udp://$LOGSTASH_ADDRESS:12201
+                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
                 tag: nginx

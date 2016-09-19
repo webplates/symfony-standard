@@ -18,14 +18,18 @@ services:
             service: db
         volumes:
             - ./var/docker/dev/mysql:/var/lib/mysql
+        volumes_from:
+            - data
 
     app: &app
         build: etc/docker/dev/app
-        volumes_from:
-            - data
+        environment:
+            SYMFONY__DATABASE_HOST: db
         links:
             - db
             - blackfire
+        volumes_from:
+            - data
 
     web: &web
         build: etc/docker/dev/web
