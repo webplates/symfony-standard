@@ -5,29 +5,8 @@ services:
         volumes:
             - $HOME/.npm:/var/www/.npm
     app:
-        environment:
-            SYMFONY__MAILER_HOST: $MAILER_ADDRESS
-            SYMFONY__MAILER_PORT: $MAILER_PORT
-        logging: &app_logging
-            driver: gelf
-            options:
-                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
-                tag: symfony
         volumes:
             - $HOME/.composer/cache:/var/www/.composer/cache
-
-    app_debug:
-        logging: *app_logging
-
-    web:
-        logging: &web_logging
-            driver: gelf
-            options:
-                gelf-address: udp://$LOGCOLLECTOR_ADDRESS:12201
-                tag: nginx
-
-    web_debug:
-        logging: *web_logging
 
     blackfire:
         environment:
