@@ -31,7 +31,6 @@ set :copy_files, [
 namespace :deploy do
     after :starting, "composer:install_executable"
     after :updated, "deploy:assets:upload"
-    after :updated, "symfony:assets:install"
 end
 
 
