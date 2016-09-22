@@ -3,7 +3,7 @@ version: '2'
 services:
     frontend:
         volumes:
-            - $HOME/.npm:/var/www/.npm
+            - $HOME/.npm:/home/frontend/.npm
     app:
         volumes:
             - $HOME/.composer/cache:/var/www/.composer/cache
