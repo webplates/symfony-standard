@@ -15,7 +15,5 @@ php:
 blackfire:
     server_id:
     server_token:
-xdebug:
-    idekey: PHPSTORM
 nodejs:
     version: 6.x

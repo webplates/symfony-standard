@@ -1,6 +1,6 @@
 ---
 - name: Set PHP user
-  lineinfile: dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp="^;?user" line="user = vagrant"
+  lineinfile: dest=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=present regexp="^;?user" line="user = ubuntu"
   notify: restart php-fpm
 
 - name: Set listen port

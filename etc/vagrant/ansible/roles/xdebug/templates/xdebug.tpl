@@ -1,6 +1,5 @@
 zend_extension=xdebug.so
 
+xdebug.remote_autostart = 1
 xdebug.remote_enable = on
-xdebug.remote_connect_back = on
-xdebug.idekey={{ xdebug.idekey }}
-xdebug.remote_port = 9090
+xdebug.remote_connect_back = off

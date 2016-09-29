@@ -10,7 +10,7 @@
   notify: restart nginx
 
 - name: Add php-fpm to /etc/hosts
-  lineinfile: dest=/etc/hosts regexp='^127\.0\.0\.1 php-fpm' line='127.0.0.1 php-fpm' owner=root group=root mode=0644
+  lineinfile: dest=/etc/hosts regexp='^127\.0\.0\.1 app' line='127.0.0.1 app' owner=root group=root mode=0644
 
 - name: Change default nginx site
   template: src=default.conf dest=/etc/nginx/conf.d/default.conf

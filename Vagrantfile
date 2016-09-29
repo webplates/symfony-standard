@@ -41,10 +41,10 @@ Vagrant.configure("2") do |config|
         ]
     end
 
-    config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "ubuntu/xenial64"
     config.vm.network :private_network, ip: "192.168.33.99" # Make sure to change the ansible inventory as well
     config.vm.synced_folder ".", "/vagrant", disabled: true
-    config.vm.synced_folder ".", "/var/www", type: "nfs" # The mount point is hardcoded everywhere
+    config.vm.synced_folder ".", "/app", type: "nfs" # The mount point is hardcoded everywhere
     config.vm.hostname = conf["hostname"]
     config.ssh.forward_agent = true
 
@@ -62,7 +62,7 @@ Vagrant.configure("2") do |config|
 
     # Exec plugin allows to easily execute commands in Vagrant
     if Vagrant.has_plugin?("vagrant-exec")
-        config.exec.commands '*', directory: '/var/www'
+        config.exec.commands '*', directory: '/app'
     end
 
     # Hostmanager adds the VM hostname to your hosts file

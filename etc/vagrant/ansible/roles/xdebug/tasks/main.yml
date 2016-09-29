@@ -4,3 +4,6 @@
 
 - name: Install xDebug configuration
   template: src=xdebug.tpl dest=/etc/php/{{ php.version }}/mods-available/xdebug.ini owner=root group=root
+
+- name: Configure xDebug remote host
+  shell: echo "xdebug.remote_host = $(netstat -rn | grep "^0.0.0.0 " | cut -d " " -f10)" | tee -a /etc/php/{{ php.version }}/mods-available/xdebug.ini

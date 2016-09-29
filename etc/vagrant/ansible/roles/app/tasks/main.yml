@@ -2,4 +2,4 @@
 # application tasks to be customized and to run after the main provision
 
 - name: Create Symfony local directory
-  file: path=/opt/symfony state=directory owner=vagrant group=vagrant recurse=true
+  file: path=/opt/symfony state=directory owner=ubuntu group=ubuntu recurse=true
