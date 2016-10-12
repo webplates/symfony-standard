@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+    - { resource: config_dev.local.yml, ignore_errors: true }
 
 framework:
     router:

@@ -12,6 +12,7 @@
 /etc/vagrant/ansible/vars/config.yml
 
 # Symfony
+/app/config/config_dev.local.yml
 /app/config/parameters.yml
 /app/config/parameters.test.yml
 /phpunit.xml
