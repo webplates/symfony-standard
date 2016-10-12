@@ -12,7 +12,7 @@ services:
         volumes_from:
             - data
 
-    db:
+    db: &db
         extends:
             file: etc/docker/common/db/docker-compose.yml
             service: db
@@ -40,7 +40,7 @@ services:
         volumes_from:
             - data
 
-    app_debug:
+    app_debug: &app_debug
         <<: *app
         build:
             context: etc/docker/dev/app
@@ -51,6 +51,20 @@ services:
         <<: *web
         links:
             - app_debug:app
+
+    test:
+        <<: *app_debug
+        command: make test
+        environment:
+            SYMFONY_ENV: test
+        links:
+            - db:db_test
+            - blackfire
+
+    db_test:
+        <<: *db
+        volumes:
+            - ./var/docker/test/mysql:/var/lib/mysql
 
     # Set your blackfire IDs and tokens as environment variables
     # in docker-compose.override.yml before building the containers.
