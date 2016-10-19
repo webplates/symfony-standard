@@ -24,7 +24,7 @@ services:
 
     app: &app
         build: etc/docker/dev/app
-        environment:
+        environment: &app_environment
             SYMFONY__DATABASE_HOST: db
         links:
             - db
@@ -57,6 +57,7 @@ services:
         <<: *app_debug
         command: /bin/true
         environment:
+            <<: *app_environment
             SYMFONY_ENV: test
         links:
             - db:db_test
