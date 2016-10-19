@@ -9,7 +9,7 @@ services:
 
     frontend:
         build: etc/docker/dev/frontend
-        command: gulp build
+        command: /bin/true
         volumes_from:
             - data
 
@@ -55,7 +55,7 @@ services:
 
     test:
         <<: *app_debug
-        command: make test
+        command: /bin/true
         environment:
             SYMFONY_ENV: test
         links:
