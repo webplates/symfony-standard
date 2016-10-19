@@ -9,6 +9,7 @@ services:
 
     frontend:
         build: etc/docker/dev/frontend
+        command: gulp build
         volumes_from:
             - data
 
